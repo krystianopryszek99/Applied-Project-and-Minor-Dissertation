@@ -3,6 +3,7 @@
 from tkinter import * 
 import tkinter as tk
 from time import strftime
+import cv2
 
 def time():
     string = strftime('%H:%M:%S %p \n %x')
@@ -13,7 +14,7 @@ def register():
     window = tk.Tk()
     window.geometry("500x400")
     window.resizable(True,False)
-    window.title("Clocking System")
+    window.title("Registration")
 
     # Register Frame
     Register_Frame=Frame(window,bd=4,relief=RIDGE, bg="blue")
@@ -22,21 +23,53 @@ def register():
     reg_title=Label(Register_Frame, text="Registration",font=("times new roman", 30, "bold"),bg="blue", fg="white")
     reg_title.grid(row=0, columnspan=2, pady=10)
 
-    text = Label(Register_Frame, text="Click 'Capture' to take a picture of your face for registration \n Hit 'Space' to save the image",font=("times new roman", 10, "bold"),bg="blue", fg="white")
+    text = Label(Register_Frame, text="Click 'Capture' to take a picture of your face \n Hit 'S' to save the image OR 'Q' to close the program",font=("times new roman", 15, "bold"),bg="blue", fg="white")
     text.place(x=0,y=90)
 
     # Button 
-    RegButton = tk.Button(Register_Frame, text="Capture" ,fg="black"  ,bg="white"  ,width=11 ,activebackground = "white" ,font=('times', 11, ' bold '))
+    RegButton = tk.Button(Register_Frame, text="Capture", command=captureImg, fg="black"  ,bg="white"  ,width=11 ,activebackground = "white" ,font=('times', 11, ' bold '))
     RegButton.place(x=10, y=180)
 
     window.mainloop()
+
+def captureImg():
+    cap = cv2.VideoCapture(0)
+
+    img_counter = 0
+
+    while True:
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+        if not ret:
+            print("failed")
+            break
+        cv2.imshow("Registration", frame)
+
+        k = cv2.waitKey(1)
+        # click 'q' to close the program
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            print("Program closing..")
+            # closes the webcam
+            cap.release()
+            # destroys all the windows we created
+            cv2.destroyAllWindows()
+        # click 's' to save the image
+        elif cv2.waitKey(1) & 0xFF == ord('s'):
+            # for now it's hardcoded, will be changed for manually entering employee name 
+            img_name = "images/krystian.jpg".format(img_counter)
+            cv2.imwrite(img_name, frame)
+            img_counter += 1
+            # closes the webcam
+            cap.release()
+            # destroys all the windows we created
+            cv2.destroyAllWindows()
 
 # User Interface (Menu) 
 
 window = tk.Tk()
 window.geometry("1028x520")
 window.resizable(True,False)
-window.title("Registration")   
+window.title("Clocking Management System")   
 
 label=Label(window, font=("times new roman", 30, "bold"),bg="grey", fg="white")
 label.pack(side=TOP, fill=X)
