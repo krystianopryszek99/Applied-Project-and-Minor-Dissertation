@@ -4,11 +4,15 @@ from tkinter import *
 import tkinter as tk
 from time import strftime
 import cv2
+import faceRecognition
 
 def time():
     string = strftime('%H:%M:%S %p \n %x')
     label.config(text=string)
     label.after(1000, time)
+
+def facialRecognition():
+    faceRecognition.runRecognition()
 
 def register():
     window = tk.Tk()
@@ -64,7 +68,7 @@ def captureImg():
             # destroys all the windows we created
             cv2.destroyAllWindows()
 
-# User Interface (Menu) 
+# User Interface (Main Menu) 
 
 window = tk.Tk()
 window.geometry("1028x520")
@@ -84,7 +88,7 @@ Right_Frame=Frame(window,bd=4,relief=RIDGE, bg="white")
 Right_Frame.place(x=510, y=95, width=520, height=425)
 
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Clock In" ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Clock In", command=facialRecognition ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
 clockOutButton = tk.Button(Left_Frame, text="Clock Out",fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
