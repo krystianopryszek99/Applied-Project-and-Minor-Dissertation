@@ -36,3 +36,23 @@ def runRecognition():
     # This function will get all faces that it knows 
     getEncodeList = getEncodings(images)
     print('Found Encodings')
+
+    # initialising webcam
+    cap = cv2.VideoCapture(0)
+
+    # while loop to get each frame one by one 
+    while True:
+        success, img = cap.read()
+        resizedImg = cv2.resize(img,(0,0),None,0.25,0.25)
+        # convert into rgb
+        resizedImg = cv2.cvtColor(resizedImg, cv2.COLOR_BGR2RGB)
+        
+        # Display the resulting frame
+        cv2.imshow('Webcam',img)
+        # click 'q' to close the program
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            print("Program closing..")
+            # closes the webcam
+            cap.release()
+            # destroys all the windows we created
+            cv2.destroyAllWindows()
