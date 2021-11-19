@@ -46,6 +46,23 @@ def runRecognition():
         resizedImg = cv2.resize(img,(0,0),None,0.25,0.25)
         # convert into rgb
         resizedImg = cv2.cvtColor(resizedImg, cv2.COLOR_BGR2RGB)
+
+        # find location of the faces
+        facesCurrentFrame = face_recognition.face_locations(resizedImg)
+        encodesCurrentFrame = face_recognition.face_encodings(resizedImg,facesCurrentFrame)
+
+        # finding the matches
+        # using zip as it allows you to iterate two lists at the same time
+        for encodeFace,faceLocation in zip(encodesCurrentFrame,facesCurrentFrame):
+            # matching, compares the list of faces that it knows and one of the encodings
+            matches = face_recognition.compare_faces(getEncodeList,encodeFace)
+            # find distance 
+            faceDistance = face_recognition.face_distance(getEncodeList,encodeFace)
+            print(faceDistance)
+            matchIndex = np.argmin(faceDistance)
+            # show name of the best match
+            name = classNames[matchIndex].upper()
+            print(name)
         
         # Display the resulting frame
         cv2.imshow('Webcam',img)
