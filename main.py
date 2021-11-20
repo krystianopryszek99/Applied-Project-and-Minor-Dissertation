@@ -5,6 +5,7 @@ import tkinter as tk
 from time import strftime
 import cv2
 import faceRecognition
+import os
 
 def time():
     string = strftime('%H:%M:%S %p \n %x')
@@ -68,6 +69,9 @@ def captureImg():
             # destroys all the windows we created
             cv2.destroyAllWindows()
 
+def closeProgram():
+    os._exit(0)
+
 # User Interface (Main Menu) 
 
 window = tk.Tk()
@@ -95,6 +99,9 @@ clockOutButton = tk.Button(Left_Frame, text="Clock Out",fg="white"  ,bg="red"  ,
 clockOutButton.place(x=100, y=230)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
-RegButton.place(x=100, y=160)
+RegButton.place(x=100, y=100)
+
+ExitButton = tk.Button(Right_Frame, text="Exit", command=closeProgram ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+ExitButton.place(x=100, y=230)
 
 window.mainloop()
