@@ -33,6 +33,25 @@ def runRecognition():
             encodeList.append(encode)
         return encodeList
 
+    # function to mark attendance 
+    def attendance(name):
+        # to open csv file to read and write
+        with open('Attendance.csv', 'r+') as f:
+            # list 
+            myList = f.readlines()
+            # list of names
+            nameList = []
+            for line in myList:
+                # find entry and breaks up a string
+                entry = line.split(',')
+            # if name is not present in the list
+            if name not in nameList:
+                currentTime = datetime.now()
+                timeString = currentTime.strftime('%H:%M:%S')
+                dateString = currentTime.strftime('%d/%m/%Y')
+                # writes the items of a list to the file 
+                f.writelines(f'\n{name},{timeString},{dateString}')
+
     # This function will get all faces that it knows 
     getEncodeList = getEncodings(images)
     print('Found Encodings')
@@ -70,13 +89,14 @@ def runRecognition():
                 cv2.rectangle(img,(x1,y1),(x2,y2),(255,0,0),2)
                 cv2.rectangle(img,(x1,y2-35),(x2,y2),(255,0,0),cv2.FILLED)
                 cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+                attendance(name)
         
         # Display the resulting frame
         cv2.imshow('Webcam',img)
         # click 'q' to close the program
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            print("Program closing..")
+        if cv2.waitKey(1000) & 0xFF == ord('s'):
             # closes the webcam
             cap.release()
             # destroys all the windows we created
             cv2.destroyAllWindows()
+            
