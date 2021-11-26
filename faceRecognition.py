@@ -33,10 +33,29 @@ def runRecognition():
             encodeList.append(encode)
         return encodeList
 
-    # function to mark attendance 
-    def attendance(name):
+    # function to clock in
+    def clockIn(name):
         # to open csv file to read and write
-        with open('Attendance.csv', 'r+') as f:
+        with open('clockingLog/ClockIn.csv', 'r+') as f:
+            # list 
+            myList = f.readlines()
+            # list of names
+            nameList = []
+            for line in myList:
+                # find entry and breaks up a string
+                entry = line.split(',')
+            # if name is not present in the list
+            if name not in nameList:
+                currentTime = datetime.now()
+                timeString = currentTime.strftime('%H:%M:%S')
+                dateString = currentTime.strftime('%d/%m/%Y')
+                # writes the items of a list to the file 
+                f.writelines(f'\n{name},{timeString},{dateString}')
+
+    # function to clock out
+    def clockOut(name):
+        # to open csv file to read and write
+        with open('clockingLog/ClockOut.csv', 'r+') as f:
             # list 
             myList = f.readlines()
             # list of names
@@ -89,12 +108,16 @@ def runRecognition():
                 cv2.rectangle(img,(x1,y1),(x2,y2),(255,0,0),2)
                 cv2.rectangle(img,(x1,y2-35),(x2,y2),(255,0,0),cv2.FILLED)
                 cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
-                attendance(name)
+                # if user wants to clock in press 1 and 2 to clock out
+                if cv2.waitKey(1000) & 0xFF == ord('1'):
+                    clockIn(name)
+                elif cv2.waitKey(100) & 0xFF == ord('2'):
+                    clockOut(name)
         
         # Display the resulting frame
         cv2.imshow('Webcam',img)
         # click 'q' to close the program
-        if cv2.waitKey(1000) & 0xFF == ord('s'):
+        if cv2.waitKey(1000) & 0xFF == ord('q'):
             # closes the webcam
             cap.release()
             # destroys all the windows we created
