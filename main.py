@@ -8,7 +8,8 @@ import faceRecognition
 import os
 
 def time():
-    string = strftime('%H:%M:%S %p \n %x')
+    # Time and date
+    string = strftime('%H:%M:%S %p \n %d/%m/%Y')
     label.config(text=string)
     label.after(1000, time)
 
@@ -94,9 +95,6 @@ Right_Frame.place(x=510, y=95, width=520, height=425)
 # Buttons 
 clockInButton = tk.Button(Left_Frame, text="Clock In/Out", command=facialRecognition ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
 clockInButton.place(x=100, y=170)
-
-#clockOutButton = tk.Button(Left_Frame, text="Clock Out",fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
-#clockOutButton.place(x=100, y=230)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
 RegButton.place(x=100, y=100)

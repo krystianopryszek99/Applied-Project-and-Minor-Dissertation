@@ -37,13 +37,8 @@ def runRecognition():
     def clockIn(name):
         # to open csv file to read and write
         with open('clockingLog/ClockIn.csv', 'r+') as f:
-            # list 
-            myList = f.readlines()
             # list of names
             nameList = []
-            for line in myList:
-                # find entry and breaks up a string
-                entry = line.split(',')
             # if name is not present in the list
             if name not in nameList:
                 currentTime = datetime.now()
@@ -56,13 +51,8 @@ def runRecognition():
     def clockOut(name):
         # to open csv file to read and write
         with open('clockingLog/ClockOut.csv', 'r+') as f:
-            # list 
-            myList = f.readlines()
             # list of names
             nameList = []
-            for line in myList:
-                # find entry and breaks up a string
-                entry = line.split(',')
             # if name is not present in the list
             if name not in nameList:
                 currentTime = datetime.now()
@@ -110,12 +100,16 @@ def runRecognition():
                 cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
                 # if user wants to clock in press 1 and 2 to clock out
                 if cv2.waitKey(1000) & 0xFF == ord('1'):
+                    # print the name of the person clocked in
+                    print(name + " has Clocked In!")
                     clockIn(name)
-                elif cv2.waitKey(100) & 0xFF == ord('2'):
+                elif cv2.waitKey(1000) & 0xFF == ord('2'):
+                    # print the name of the person clocked out
+                    print(name + " has Clocked Out!")
                     clockOut(name)
         
         # Display the resulting frame
-        cv2.imshow('Webcam',img)
+        cv2.imshow('Image Capturing',img)
         # click 'q' to close the program
         if cv2.waitKey(1000) & 0xFF == ord('q'):
             # closes the webcam
