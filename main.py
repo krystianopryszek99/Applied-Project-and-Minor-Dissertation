@@ -6,6 +6,7 @@ from time import strftime
 import cv2
 import faceRecognition
 import os
+import mongoConnection
 
 def time():
     # Time and date
@@ -15,6 +16,9 @@ def time():
 
 def facialRecognition():
     faceRecognition.runRecognition()
+
+def mongoConn():
+    mongoConnection.mongo()
 
 def register():
     window = tk.Tk()
@@ -62,8 +66,9 @@ def captureImg():
         # click 's' to save the image
         elif cv2.waitKey(1) & 0xFF == ord('s'):
             # for now it's hardcoded, will be changed for manually entering employee name 
-            img_name = "images/krystian.jpg".format(img_counter)
+            img_name = "images/krystian2.jpg".format(img_counter)
             cv2.imwrite(img_name, frame)
+            mongoConn()
             img_counter += 1
             # closes the webcam
             cap.release()
