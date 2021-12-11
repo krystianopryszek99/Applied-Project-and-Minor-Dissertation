@@ -57,18 +57,20 @@ def captureImg():
 
         k = cv2.waitKey(1)
         # click 'q' to close the program
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        #if cv2.waitKey(1) & 0xFF == ord('q'):
+        if k % 256 == 27:
             print("Program closing..")
             # closes the webcam
             cap.release()
             # destroys all the windows we created
             cv2.destroyAllWindows()
         # click 's' to save the image
-        elif cv2.waitKey(1) & 0xFF == ord('s'):
+        #elif cv2.waitKey(1) & 0xFF == ord('s'):
+        elif k % 256 == 32:
             # for now it's hardcoded, will be changed for manually entering employee name 
             img_name = "images/krystian2.jpg".format(img_counter)
             cv2.imwrite(img_name, frame)
-            mongoConn()
+            #mongoConn()
             img_counter += 1
             # closes the webcam
             cap.release()
@@ -115,7 +117,7 @@ lbl_name.place(x=100, y=100)
 txt_name=Entry(Right_Frame,textvariable=name, font=('times', 20, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=100, y=150)
 
-RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+RegButton = tk.Button(Right_Frame, text="Register", command=captureImg ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
 RegButton.place(x=100, y=230)
 
 #
