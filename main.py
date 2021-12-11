@@ -21,28 +21,6 @@ def mongoConn():
     mongoConnection.mongo()
 
 def register():
-    window = tk.Tk()
-    window.geometry("500x400")
-    window.resizable(True,False)
-    window.title("Registration")
-
-    # Register Frame
-    Register_Frame=Frame(window,bd=4,relief=RIDGE, bg="blue")
-    Register_Frame.place(x=0, y=0, width=500, height=400)
-
-    reg_title=Label(Register_Frame, text="Registration",font=("times new roman", 30, "bold"),bg="blue", fg="white")
-    reg_title.grid(row=0, columnspan=2, pady=10)
-
-    text = Label(Register_Frame, text="Click 'Capture' to take a picture of your face \n Hit 'S' to save the image OR 'Q' to close the program",font=("times new roman", 15, "bold"),bg="blue", fg="white")
-    text.place(x=0,y=90)
-
-    # Button 
-    RegButton = tk.Button(Register_Frame, text="Capture", command=captureImg, fg="black"  ,bg="white"  ,width=11 ,activebackground = "white" ,font=('times', 11, ' bold '))
-    RegButton.place(x=10, y=180)
-
-    window.mainloop()
-
-def captureImg():
     cap = cv2.VideoCapture(0)
 
     img_counter = 0
@@ -65,10 +43,10 @@ def captureImg():
             cv2.destroyAllWindows()
         # click 'space' to save the image
         elif k % 256 == 32:
-            # for now it's hardcoded, will be changed for manually entering employee name 
-            img_name = "images/krystian2.jpg".format(img_counter)
+            # saves users name as a image 
+            img_name = "images/" + name.get() + ".jpg".format(img_counter)
             cv2.imwrite(img_name, frame)
-            #mongoConn()
+            mongoConn()
             img_counter += 1
             # closes the webcam
             cap.release()
@@ -115,7 +93,7 @@ lbl_name.place(x=100, y=100)
 txt_name=Entry(Right_Frame,textvariable=name, font=('times', 20, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=100, y=150)
 
-RegButton = tk.Button(Right_Frame, text="Register", command=captureImg ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
 RegButton.place(x=100, y=230)
 
 #

@@ -18,7 +18,7 @@ def mongo():
     # Stores the image on the database
     db = mongo_conn()
     # name of the file
-    name = 'krystian2.jpg'
+    name = 'krystian.jpg'
     # location of the file
     file_location = "images/" + name
     # open the file 
@@ -37,7 +37,7 @@ def mongo():
     fs = gridfs.GridFS(db)
     outputdata = fs.get(my_id).read()
     # saves the retrieved image in the downloads folder
-    download_location = "images/download/" + name
+    download_location = "download/" + name
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()

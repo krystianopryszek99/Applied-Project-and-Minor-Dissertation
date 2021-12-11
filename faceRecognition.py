@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 def runRecognition():
-    path = 'images/download'
+    path = 'download'
     # list of images
     images = []
     # names of images
