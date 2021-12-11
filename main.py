@@ -56,16 +56,14 @@ def captureImg():
         cv2.imshow("Registration", frame)
 
         k = cv2.waitKey(1)
-        # click 'q' to close the program
-        #if cv2.waitKey(1) & 0xFF == ord('q'):
+        # click 'esc' to close the program
         if k % 256 == 27:
             print("Program closing..")
             # closes the webcam
             cap.release()
             # destroys all the windows we created
             cv2.destroyAllWindows()
-        # click 's' to save the image
-        #elif cv2.waitKey(1) & 0xFF == ord('s'):
+        # click 'space' to save the image
         elif k % 256 == 32:
             # for now it's hardcoded, will be changed for manually entering employee name 
             img_name = "images/krystian2.jpg".format(img_counter)
