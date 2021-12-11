@@ -85,6 +85,9 @@ window.geometry("1028x520")
 window.resizable(True,False)
 window.title("Clocking Management System")   
 
+# Stores the name when registering 
+name = tk.StringVar()
+
 label=Label(window, font=("times new roman", 30, "bold"),bg="grey", fg="white")
 label.pack(side=TOP, fill=X)
 time()  
@@ -99,12 +102,22 @@ Right_Frame.place(x=510, y=95, width=520, height=425)
 
 # Buttons 
 clockInButton = tk.Button(Left_Frame, text="Clock In/Out", command=facialRecognition ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
-clockInButton.place(x=100, y=170)
+clockInButton.place(x=100, y=100)
+
+ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+ExitButton.place(x=100, y=230)
+
+# entry 
+
+lbl_name = Label(Right_Frame, text="Name", bg="white",fg="black",font=('times', 20, ' bold '))
+lbl_name.place(x=100, y=100)
+
+txt_name=Entry(Right_Frame,textvariable=name, font=('times', 20, ' bold '),bd=5,relief=GROOVE)
+txt_name.place(x=100, y=150)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
-RegButton.place(x=100, y=100)
+RegButton.place(x=100, y=230)
 
-ExitButton = tk.Button(Right_Frame, text="Exit", command=closeProgram ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
-ExitButton.place(x=100, y=230)
+#
 
 window.mainloop()
