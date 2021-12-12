@@ -3,8 +3,13 @@ import numpy as np
 import face_recognition
 from datetime import datetime
 import os
+import mongoRetrieve
+
+def retrieveUser():
+    mongoRetrieve.retrieve()
 
 def runRecognition():
+    retrieveUser()
     path = 'download'
     # list of images
     images = []

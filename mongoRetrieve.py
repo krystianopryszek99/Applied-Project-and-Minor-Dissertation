@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import gridfs
 
-# Stores users from the database 
+# Retrieves users from the database 
 
 # Connection to the database
 def mongo_conn():
@@ -16,18 +16,18 @@ def mongo_conn():
         # print error message
         print("Error in mongo connection", e)
 
-def store():
-    # Stores the image on the database
+def retrieve():
     db = mongo_conn()
-    # name of the file
     name = 'elon.jpg'
-    # location of the file
-    file_location = "images/" + name
-    # open the file 
-    file_data = open(file_location, "rb")
-    # read the file
-    data = file_data.read()
-    # store it in the database
+    # Retrieving the image from the database
+    data = db.fs.files.find_one({'filename': name})
+    # _id assigns a auto generated id in mongoDB 
+    my_id = data['_id']
     fs = gridfs.GridFS(db)
-    fs.put(data, filename = name)
-    print("upload completed")
+    outputdata = fs.get(my_id).read()
+    # saves the retrieved image in the downloads folder
+    download_location = "download/" + name
+    output = open(download_location, "wb")
+    output.write(outputdata)
+    output.close()
+    print("download completed")
