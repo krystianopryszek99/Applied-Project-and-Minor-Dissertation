@@ -6,7 +6,7 @@ from time import strftime
 import cv2
 import faceRecognition
 import os
-import mongoConnection
+import mongoStore
 
 def time():
     # Time and date
@@ -17,8 +17,8 @@ def time():
 def facialRecognition():
     faceRecognition.runRecognition()
 
-def mongoConn():
-    mongoConnection.mongo()
+def storeUser():
+    mongoStore.store()
 
 def register():
     cap = cv2.VideoCapture(0)
@@ -46,7 +46,8 @@ def register():
             # saves users name as a image 
             img_name = "images/" + name.get() + ".jpg".format(img_counter)
             cv2.imwrite(img_name, frame)
-            mongoConn()
+            # store user to database
+            storeUser()
             img_counter += 1
             # closes the webcam
             cap.release()
