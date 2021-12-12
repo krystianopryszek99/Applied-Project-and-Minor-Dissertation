@@ -78,22 +78,32 @@ Left_Frame.place(x=0, y=95, width=520, height=425)
 Right_Frame=Frame(window,bd=4,relief=RIDGE, bg="white")
 Right_Frame.place(x=510, y=95, width=520, height=425)
 
+lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl.pack(side=TOP, fill=X)
+alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+alreadyReg_title.place(x=140, y=10)
+
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Clock In/Out", command=facialRecognition ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Clock In/Out", command=facialRecognition ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
-ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
 ExitButton.place(x=100, y=230)
 
 # entry 
 
-lbl_name = Label(Right_Frame, text="Name", bg="white",fg="black",font=('times', 20, ' bold '))
-lbl_name.place(x=100, y=100)
+lbl=Label(Right_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl.pack(side=TOP, fill=X)
+newUsers_title = Label(Right_Frame, text="New Users", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+newUsers_title.place(x=180, y=10)
 
-txt_name=Entry(Right_Frame,textvariable=name, font=('times', 20, ' bold '),bd=5,relief=GROOVE)
-txt_name.place(x=100, y=150)
+lbl_name = Label(Right_Frame, text="Name", bg="white",fg="black",font=('times new roman', 20, ' bold '))
+lbl_name.place(x=100, y=90)
 
-RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times', 30, ' bold '))
+txt_name=Entry(Right_Frame,textvariable=name, font=('times new roman', 20, ' bold '),bd=5,relief=GROOVE)
+txt_name.place(x=100, y=140)
+
+RegButton = tk.Button(Right_Frame, text="Register", command=register ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
 RegButton.place(x=100, y=230)
 
 #
