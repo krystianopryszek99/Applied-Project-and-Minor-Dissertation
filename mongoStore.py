@@ -7,7 +7,7 @@ import gridfs
 def mongo_conn():
     # if there is connection to db then
     try:
-        conn = MongoClient("mongodb+srv://krystianopryszek:<password>@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        conn = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         # print the message or
         print("MongoDB connected", conn)
         return conn.Images
@@ -20,7 +20,7 @@ def store():
     # Stores the image on the database
     db = mongo_conn()
     # name of the file
-    name = 'elon.jpg'
+    name = 'krystian.jpg'
     # location of the file
     file_location = "images/" + name
     # open the file 

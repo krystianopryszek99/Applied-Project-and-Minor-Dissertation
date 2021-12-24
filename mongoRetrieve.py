@@ -7,7 +7,7 @@ import gridfs
 def mongo_conn():
     # if there is connection to db then
     try:
-        conn = MongoClient("mongodb+srv://krystianopryszek:<password>@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        conn = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         # print the message or
         print("MongoDB connected", conn)
         return conn.Images
@@ -18,7 +18,7 @@ def mongo_conn():
 
 def retrieve():
     db = mongo_conn()
-    name = 'elon.jpg'
+    name = 'krystian.jpg'
     # Retrieving the image from the database
     data = db.fs.files.find_one({'filename': name})
     # _id assigns a auto generated id in mongoDB 
