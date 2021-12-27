@@ -103,6 +103,15 @@ def runRecognition():
                 cv2.rectangle(img,(x1,y1),(x2,y2),(255,0,0),2)
                 cv2.rectangle(img,(x1,y2-35),(x2,y2),(255,0,0),cv2.FILLED)
                 cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+                # if the matches a face it will automatically close the program after 3 seconds
+                if matches[matchIndex] == True:
+                    # Display the resulting frame
+                    cv2.imshow('Image Capturing',img)
+                    cv2.waitKey(3000)
+                    cap.release()
+                    # destroys all the windows we created
+                    cv2.destroyAllWindows()
+
                 # if user wants to clock in press 1 and 2 to clock out
                 if cv2.waitKey(1000) & 0xFF == ord('1'):
                     # print the name of the person clocked in
@@ -112,13 +121,3 @@ def runRecognition():
                     # print the name of the person clocked out
                     print(name + " has Clocked Out!")
                     clockOut(name)
-        
-        # Display the resulting frame
-        cv2.imshow('Image Capturing',img)
-        # click 'q' to close the program
-        if cv2.waitKey(1000) & 0xFF == ord('q'):
-            # closes the webcam
-            cap.release()
-            # destroys all the windows we created
-            cv2.destroyAllWindows()
-            
