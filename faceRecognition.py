@@ -23,11 +23,12 @@ def runRecognition():
         images.append(currentImg)
         # append classNames
         classNames.append(os.path.splitext(element)[0])
-    print("List of all images found:")
+    print("List of all people found:")
     print(classNames)
 
     # function that will compute all the encodings
     def getEncodings(images):
+        print("Getting all the encodings...")
         # list with all encodings
         encodeList = []
         # looping through all images
@@ -107,17 +108,10 @@ def runRecognition():
                 if matches[matchIndex] == True:
                     # Display the resulting frame
                     cv2.imshow('Image Capturing',img)
+                    # check in 
+                    print(name + " has checked In!")
+                    clockIn(name)
                     cv2.waitKey(3000)
                     cap.release()
                     # destroys all the windows we created
                     cv2.destroyAllWindows()
-
-                # if user wants to clock in press 1 and 2 to clock out
-                if cv2.waitKey(1000) & 0xFF == ord('1'):
-                    # print the name of the person clocked in
-                    print(name + " has Clocked In!")
-                    clockIn(name)
-                elif cv2.waitKey(1000) & 0xFF == ord('2'):
-                    # print the name of the person clocked out
-                    print(name + " has Clocked Out!")
-                    clockOut(name)
