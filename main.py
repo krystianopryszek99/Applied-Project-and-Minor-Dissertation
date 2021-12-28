@@ -53,6 +53,8 @@ def register():
             cap.release()
             # destroys all the windows we created
             cv2.destroyAllWindows()
+            # After registration, redirect to main menu
+            show_mainMenuFrame()
 
 def closeProgram():
     os._exit(0)
