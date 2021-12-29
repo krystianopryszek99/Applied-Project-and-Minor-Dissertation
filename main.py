@@ -149,38 +149,38 @@ BackButton.place(x=10, y=330)
 
 checkedInMenuFrame = Frame(window)
 
-label=Label(checkedInMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
+label=Label(checkedInMenuFrame, font=("times new roman", 30, "bold"), bg="grey", fg="white")
 label.grid(row=0, column=0, sticky="nsew")
 time()  
 
 Frame(checkedInMenuFrame).grid(row=1, column=0, padx=514, pady=500)
 
 # Left Frame
-Left_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
+Left_Frame=Frame(checkedInMenuFrame,bd=4, relief=RIDGE, bg="white")
 Left_Frame.place(x=0, y=95, width=520, height=425)
 
 # Right Frame
-Right_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
+Right_Frame=Frame(checkedInMenuFrame,bd=4, relief=RIDGE, bg="white")
 Right_Frame.place(x=510, y=95, width=520, height=425)
 
-lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="green", fg="white")
 lbl.pack(side=TOP, fill=X)
-alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="green", fg="white", font=('times new roman', 20, ' bold '))
 alreadyReg_title.place(x=140, y=10)
 
-lbl=Label(Right_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl=Label(Right_Frame, font=("times new roman", 40, "bold"),bg="green", fg="white")
 lbl.pack(side=TOP, fill=X)
-newUsers_title = Label(Right_Frame, text="New Users", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+newUsers_title = Label(Right_Frame, text="New Users", bg="green", fg="white", font=('times new roman', 20, ' bold '))
 newUsers_title.place(x=180, y=10)
 
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Check In", fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Check In", fg="white"  ,bg="green"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
-ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 ExitButton.place(x=100, y=230)
 
-RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 RegButton.place(x=100, y=170)
 
 mainMenuFrame.grid()
