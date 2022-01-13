@@ -2,6 +2,8 @@
 
 from tkinter import * 
 import tkinter as tk
+from tkinter import messagebox
+
 from time import strftime
 import cv2
 import faceRecognition
@@ -22,40 +24,44 @@ def storeUser():
     mongoStore.store()
 
 def register():
-    cap = cv2.VideoCapture(0)
+    # if message box is empty, displays alert.
+    if len(txt_name.get()) == 0:
+        messagebox.showerror("Alert","Please enter your name")
+    else:
+        cap = cv2.VideoCapture(0)
 
-    img_counter = 0
+        img_counter = 0
 
-    while True:
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-        if not ret:
-            print("failed")
-            break
-        cv2.imshow("Registration", frame)
+        while True:
+            # Capture frame-by-frame
+            ret, frame = cap.read()
+            if not ret:
+                print("failed")
+                break
+            cv2.imshow("Registration", frame)
 
-        k = cv2.waitKey(1)
-        # click 'esc' to close the program
-        if k % 256 == 27:
-            print("Program closing..")
-            # closes the webcam
-            cap.release()
-            # destroys all the windows we created
-            cv2.destroyAllWindows()
-        # click 'space' to save the image
-        elif k % 256 == 32:
-            # saves users name as a image 
-            img_name = "images/" + name.get() + ".jpg".format(img_counter)
-            cv2.imwrite(img_name, frame)
-            # store user to database
-            storeUser()
-            img_counter += 1
-            # closes the webcam
-            cap.release()
-            # destroys all the windows we created
-            cv2.destroyAllWindows()
-            # After registration, redirect to main menu
-            show_mainMenuFrame()
+            k = cv2.waitKey(1)
+            # click 'esc' to close the program
+            if k % 256 == 27:
+                print("Program closing..")
+                # closes the webcam
+                cap.release()
+                # destroys all the windows we created
+                cv2.destroyAllWindows()
+            # click 'space' to save the image
+            elif k % 256 == 32:
+                # saves users name as a image 
+                img_name = "images/" + name.get() + ".jpg".format(img_counter)
+                cv2.imwrite(img_name, frame)
+                # store user to database
+                storeUser()
+                img_counter += 1
+                # closes the webcam
+                cap.release()
+                # destroys all the windows we created
+                cv2.destroyAllWindows()
+                # After registration, redirect to main menu
+                show_mainMenuFrame()
 
 def closeProgram():
     os._exit(0)
