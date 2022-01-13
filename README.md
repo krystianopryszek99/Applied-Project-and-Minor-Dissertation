@@ -5,6 +5,14 @@
 
 # Applied Project and Minor Dissertation
 
+| Project Title | Clocking System Using Face Recognition | 
+| --------------- | --------------- | 
+| Course | BSc (Hons) in Software Development |
+| Module | Applied Project and Minor Dissertation| 
+| Student(s) | Krystian Opryszek | 
+| Project Supervisor | Daniel Cregg | 
+| Module Supervisor | Dr. John Healy |
+
 ## Table Of Content
 - [Overview](#Overview)
 - [Project Outline](#Project-Outline)
