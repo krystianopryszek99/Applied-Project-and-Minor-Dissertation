@@ -23,6 +23,9 @@ def facialRecognition():
 def storeUser():
     mongoStore.store()
 
+def alreadyCheckedIn():
+    messagebox.showerror("Alert","You are already checked In!")
+
 def register():
     # if message box is empty, displays alert.
     if len(txt_name.get()) == 0:
@@ -180,7 +183,7 @@ newUsers_title = Label(Right_Frame, text="New Users", bg="green", fg="white", fo
 newUsers_title.place(x=180, y=10)
 
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Check In", fg="white"  ,bg="green"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Check In", command=alreadyCheckedIn, fg="white"  ,bg="green"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
 ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
