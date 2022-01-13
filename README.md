@@ -28,15 +28,19 @@ My goal is to have a fully working program that recognizes faces accurately and 
 
 # Project Outline
 
-**Capture Image:** Using live stream with a camera, user’s face is captured based on their face encodings, such as the length between their eyebrows. 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/57759154/149411479-d1b50316-87af-4a43-b857-93811b22b23a.png" />
+</p>
 
-**Image Processing:** When the image is captured, it's being processed with the face encodings. 
+**(1) Capture Image:** Using live stream with a camera, user’s face is captured based on their face encodings, such as the length between their eyebrows. 
 
-**Storing Data:** After the image is being captured and processed, the image gets stored on the database.
+**(2) Image Processing:** When the image is captured, it's being processed with the face encodings. 
 
-**Matching:** The program is checking if the face checking-in matches any of the faces that are saved in the database.
+**(3) Storing Data:** After the image is being captured and processed, the image gets stored on the database.
 
-**Result:** When the match is true (successful), it will authenticate the user and successfully check him in.
+**(4) Matching:** The program is checking if the face checking-in matches any of the faces that are saved in the database.
+
+**(5) Result:** When the match is true (successful), it will authenticate the user and successfully check him in.
 
 # How to run 
 1. Clone this repository onto your machine.
@@ -56,5 +60,3 @@ $ python main.py
 - openCV
 
 # References
-
-
