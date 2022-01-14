@@ -60,3 +60,6 @@ $ python main.py
 - openCV
 
 # References
+- [Python](https://www.python.org/)
+- [MongoDB](https://account.mongodb.com/account/login?signedOut=true)
+- [OpenCV](https://opencv.org/)
