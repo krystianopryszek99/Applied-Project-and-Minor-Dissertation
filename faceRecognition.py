@@ -111,6 +111,9 @@ def runRecognition():
                     # check in 
                     print(name + " has checked In!")
                     clockIn(name)
+                    # Delete the image of the downloads folder after it has been retrieved from the database.
+                    path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/download/" + name + ".jpg"
+                    os.remove(path)
                     cv2.waitKey(3000)
                     cap.release()
                     # destroys all the windows we created
