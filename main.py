@@ -58,6 +58,9 @@ def register():
                 cv2.imwrite(img_name, frame)
                 # store user to database
                 storeUser()
+                # Delete the image of the images folder after it has been stored on the database.
+                path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
+                os.remove(path)
                 img_counter += 1
                 # closes the webcam
                 cap.release()
