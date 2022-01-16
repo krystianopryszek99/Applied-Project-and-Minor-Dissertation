@@ -57,9 +57,13 @@ $ python main.py
 # Technologies used 
 - Python version 3.8.8
 - MongoDB
+- PyMongo
 - openCV
+- Tkinter
 
 # References
 - [Python](https://www.python.org/)
 - [MongoDB](https://account.mongodb.com/account/login?signedOut=true)
+- [PyMongo](https://docs.mongodb.com/drivers/pymongo/)
 - [OpenCV](https://opencv.org/)
+- [Tkinter](https://docs.python.org/3/library/tkinter.html)
