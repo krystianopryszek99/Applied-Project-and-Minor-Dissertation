@@ -17,8 +17,9 @@
 - [Overview](#Overview)
 - [Project Outline](#Project-Outline)
 - [How to run](#How-to-run)
+- [Demo](#Demo)
 - [Technologies used ](#Technologies-used)
-- [Refrences](#Refrences)
+- [References](#Refrences)
 
 
 # Overview
@@ -53,6 +54,12 @@ $ git clone https://github.com/krystianopryszek99/Applied-Project-and-Minor-Diss
 ```
 $ python main.py
 ```
+
+# Demo
+
+This is a current version of the program running, design and functionality are to be changed or updated.   
+
+![demo](https://user-images.githubusercontent.com/57759154/149583812-2d97607e-8048-4c9e-9e17-10ac95042dc8.gif)
 
 # Technologies used 
 - Python version 3.8.8
