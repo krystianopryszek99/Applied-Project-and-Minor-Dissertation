@@ -96,6 +96,11 @@ def show_checkInMenu():
     regMenuFrame.grid_forget()
     checkedInMenuFrame.grid()
 
+def show_healthCheckMenu():
+    mainMenuFrame.grid_forget()
+    regMenuFrame.grid_forget()
+    healthMenuFrame.grid()
+
 # Main Menu Frame
 
 mainMenuFrame = Frame(window)
@@ -185,7 +190,7 @@ lbl.pack(side=TOP, fill=X)
 newUsers_title = Label(Right_Frame, text="New Users", bg="green", fg="white", font=('times new roman', 20, ' bold '))
 newUsers_title.place(x=180, y=10)
 
-# Buttons 
+# Buttons for checked-in menu
 clockInButton = tk.Button(Left_Frame, text="Check In", command=alreadyCheckedIn, fg="white"  ,bg="green"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
@@ -194,6 +199,16 @@ ExitButton.place(x=100, y=230)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
 RegButton.place(x=100, y=170)
+
+# Health Check Form Menu
+
+healthMenuFrame = Frame(window, bg="yellow")
+
+Frame(healthMenuFrame).grid(row=1, column=0, padx=514, pady=500)
+
+# HealthCheck Frame
+HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE, bg="white")
+HealthCheck_Frame.place(x=300, y=25, width=500, height=450)
 
 mainMenuFrame.grid()
 
