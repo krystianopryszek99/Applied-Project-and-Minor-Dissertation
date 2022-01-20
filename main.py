@@ -208,7 +208,56 @@ Frame(healthMenuFrame).grid(row=1, column=0, padx=514, pady=500)
 
 # HealthCheck Frame
 HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE, bg="white")
-HealthCheck_Frame.place(x=300, y=25, width=500, height=450)
+HealthCheck_Frame.place(x=300, y=25, width=500, height=480)
+
+mobile_label = Label(HealthCheck_Frame,text = "Mobile Number : ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
+mobile_label.place(x=0, y=10)
+
+college_label = Label(HealthCheck_Frame,text = "College attending : ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
+college_label.place(x=0, y=30)
+
+text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 (coronavirus) self-isolate (stay in your room)\n - Email Covidofficer@gmit.ie\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
+text_label.place(x=0, y=250)
+
+# user input 
+
+# name entry
+mobile_var = tk.StringVar()
+mobile_entry = Entry(HealthCheck_Frame, width = 20, textvariable = mobile_var)
+mobile_entry.place(x=100, y=10)
+mobile_entry.focus()
+
+# Radio Buttons - List of colleges
+college_attend = tk.StringVar()
+radiobtn1 = Radiobutton(HealthCheck_Frame, text = 'Dublin Road Campus, Galway', value='Dublin Road Campus, Galway', bg="white",fg="black", variable = college_attend)
+radiobtn1.place(x=150, y=30)
+
+radiobtn2 = Radiobutton(HealthCheck_Frame, text = 'Mayo Campus, Castlebar', value='Mayo Campus, Castlebar', bg="white",fg="black",variable = college_attend)
+radiobtn2.place(x=150, y=60)
+
+radiobtn3 = Radiobutton(HealthCheck_Frame, text = 'CCAM, Cluain Mhuire, Galway', value='CCAM, Cluain Mhuire, Galway', bg="white",fg="black", variable = college_attend)
+radiobtn3.place(x=150, y=90)
+
+radiobtn4 = Radiobutton(HealthCheck_Frame, text = 'All Core Gym, Ballybrit', value='All Core Gym, Ballybrit', bg="white",fg="black",variable = college_attend)
+radiobtn4.place(x=150, y=120)
+
+radiobtn5 = Radiobutton(HealthCheck_Frame, text = 'Mountbellew Campus, County Galway', value='Mountbellew Campus, County Galway', bg="white",fg="black",variable = college_attend)
+radiobtn5.place(x=150, y=150)
+
+radiobtn6 = Radiobutton(HealthCheck_Frame, text = 'Letterfrack, County Galway', value='Letterfrack, County Galway', bg="white",fg="black",variable = college_attend)
+radiobtn6.place(x=150, y=180)
+
+radiobtn7 = Radiobutton(HealthCheck_Frame, text = 'GMIT (Organised Field Trip)', value='GMIT (Organised Field Trip)', bg="white",fg="black",variable = college_attend)
+radiobtn7.place(x=150, y=210)
+
+# Confirmation
+confirmation = tk.StringVar()
+radiobtn8 = Radiobutton(HealthCheck_Frame, text = 'Yes', value='Yes', bg="white",fg="black",variable = confirmation)
+radiobtn8.place(x=0, y=400)
+
+# submit form button
+submit_button = Button(HealthCheck_Frame, text = "Submit")  
+submit_button.place(x=200, y=420)
 
 mainMenuFrame.grid()
 
