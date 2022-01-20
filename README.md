@@ -27,6 +27,8 @@ This repository contains my final project which is a Clocking Management System 
 
 My goal is to have a fully working program that recognizes faces accurately and enables users to check in to college using mobile phones or kiosks. A kiosk is an idea that would be a standing station with kiosks at every door of GMIT. Due to the pandemic, students/lecturers have to fill out a health check form which not many people are aware of. The idea w kiosks would force students to fill them out on the way in.
 
+The health check form is based on [GMIT Daily Health Check 2021](https://forms.office.com/Pages/ResponsePage.aspx?id=rs8Gj9UihEykbT2-PJNVjXOa1-is_qFErTzGrrpb_BBUMEVaUkpGME1CS0ZNRUQzOUVLVktMNTM5MCQlQCN0PWcu). A menu that displays the health check form is a short version of the official GMIT health check form. The form includes the following: *Mobile number, Selection of colleges that the student is attending, and if the student is confirming that he is symptom-free*.
+
 # Project Outline
 
 <p align="center">
