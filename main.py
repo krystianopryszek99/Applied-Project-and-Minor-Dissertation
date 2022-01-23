@@ -2,6 +2,7 @@
 
 from tkinter import * 
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 
 from time import strftime
@@ -202,65 +203,66 @@ RegButton.place(x=100, y=170)
 
 # Health Check Form Menu
 
-healthMenuFrame = Frame(window, bg="yellow")
+healthMenuFrame = Frame(window, bg="#447c84")
 
-Frame(healthMenuFrame).grid(row=1, column=0, padx=514, pady=500)
+Frame(healthMenuFrame).grid(row=0, column=0, padx=1000, pady=500)
 
 # HealthCheck Frame
-HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE, bg="white")
-HealthCheck_Frame.place(x=300, y=25, width=500, height=480)
+HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE)
+HealthCheck_Frame.place(x=120, y=20, width=800, height=480)
 
-mobile_label = Label(HealthCheck_Frame,text = "Mobile Number : ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
-mobile_label.place(x=0, y=10)
+heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
+heading_label.pack()
 
-college_label = Label(HealthCheck_Frame,text = "College attending : ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
-college_label.place(x=0, y=30)
+mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('times new roman', 12, ' bold '))
+mobile_label.place(x=0, y=90)
 
-text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 (coronavirus) self-isolate (stay in your room)\n - Email Covidofficer@gmit.ie\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ", bg="white",fg="black",font=('times new roman', 10, ' bold '))
-text_label.place(x=0, y=250)
+college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list below: ",fg="black",font=('times new roman', 12, ' bold '))
+college_label.place(x=0, y=120)
 
-# user input 
+text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 (coronavirus) self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('times new roman', 12, ' bold '))
+text_label.place(x=10, y=250)
 
-# name entry
+# Name entry box
 mobile_var = tk.StringVar()
-mobile_entry = Entry(HealthCheck_Frame, width = 20, textvariable = mobile_var)
-mobile_entry.place(x=100, y=10)
-mobile_entry.focus()
+name_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = mobile_var)
+name_entrybox.place(x=120, y=90)
+name_entrybox.focus()
 
-# Radio Buttons - List of colleges
+# Radio button
 college_attend = tk.StringVar()
-radiobtn1 = Radiobutton(HealthCheck_Frame, text = 'Dublin Road Campus, Galway', value='Dublin Road Campus, Galway', bg="white",fg="black", variable = college_attend)
-radiobtn1.place(x=150, y=30)
+radiobtn1 = ttk.Radiobutton(HealthCheck_Frame, text = 'Dublin Road Campus, Galway', value='Dublin Road Campus, Galway', variable = college_attend)
+radiobtn1.place(x=150, y=150)
 
-radiobtn2 = Radiobutton(HealthCheck_Frame, text = 'Mayo Campus, Castlebar', value='Mayo Campus, Castlebar', bg="white",fg="black",variable = college_attend)
-radiobtn2.place(x=150, y=60)
+radiobtn2 = ttk.Radiobutton(HealthCheck_Frame, text = 'Mayo Campus, Castlebar', value='Mayo Campus, Castlebar',variable = college_attend)
+radiobtn2.place(x=400, y=120)
 
-radiobtn3 = Radiobutton(HealthCheck_Frame, text = 'CCAM, Cluain Mhuire, Galway', value='CCAM, Cluain Mhuire, Galway', bg="white",fg="black", variable = college_attend)
-radiobtn3.place(x=150, y=90)
+radiobtn3 = ttk.Radiobutton(HealthCheck_Frame, text = 'CCAM, Cluain Mhuire, Galway', value='CCAM, Cluain Mhuire, Galway',variable = college_attend)
+radiobtn3.place(x=150, y=180)
 
-radiobtn4 = Radiobutton(HealthCheck_Frame, text = 'All Core Gym, Ballybrit', value='All Core Gym, Ballybrit', bg="white",fg="black",variable = college_attend)
-radiobtn4.place(x=150, y=120)
+radiobtn4 = ttk.Radiobutton(HealthCheck_Frame, text = 'All Core Gym, Ballybrit', value='All Core Gym, Ballybrit',variable = college_attend)
+radiobtn4.place(x=400, y=150)
 
-radiobtn5 = Radiobutton(HealthCheck_Frame, text = 'Mountbellew Campus, County Galway', value='Mountbellew Campus, County Galway', bg="white",fg="black",variable = college_attend)
-radiobtn5.place(x=150, y=150)
+radiobtn5 = ttk.Radiobutton(HealthCheck_Frame, text = 'Mountbellew Campus, County Galway', value='Mountbellew Campus, County Galway',variable = college_attend)
+radiobtn5.place(x=150, y=210)
 
-radiobtn6 = Radiobutton(HealthCheck_Frame, text = 'Letterfrack, County Galway', value='Letterfrack, County Galway', bg="white",fg="black",variable = college_attend)
-radiobtn6.place(x=150, y=180)
+radiobtn6 = ttk.Radiobutton(HealthCheck_Frame, text = 'Letterfrack, County Galway', value='Letterfrack, County Galway',variable = college_attend)
+radiobtn6.place(x=400, y=180)
 
-radiobtn7 = Radiobutton(HealthCheck_Frame, text = 'GMIT (Organised Field Trip)', value='GMIT (Organised Field Trip)', bg="white",fg="black",variable = college_attend)
-radiobtn7.place(x=150, y=210)
+radiobtn7 = ttk.Radiobutton(HealthCheck_Frame, text = 'GMIT (Organised Field Trip)', value='GMIT (Organised Field Trip)', variable = college_attend)
+radiobtn7.place(x=400, y=210)
 
 # Confirmation
 confirmation = tk.StringVar()
-radiobtn8 = Radiobutton(HealthCheck_Frame, text = 'Yes', value='Yes', bg="white",fg="black",variable = confirmation)
-radiobtn8.place(x=0, y=400)
+radiobtn8 = ttk.Radiobutton(HealthCheck_Frame, text = 'Yes', value='Yes', variable = confirmation)
+radiobtn8.place(x=200, y=430)
 
 def action():
     facialRecognition()
 
 # submit form button
 submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('times new roman', 12))  
-submit_button.place(x=200, y=420)
+submit_button.place(x=350, y=430)
 
 mainMenuFrame.grid()
 
