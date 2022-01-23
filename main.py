@@ -130,7 +130,7 @@ newUsers_title = Label(Right_Frame, text="New Users", bg="blue", fg="white", fon
 newUsers_title.place(x=180, y=10)
 
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Check In", command=facialRecognition, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Check In", command=show_healthCheckMenu, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
 ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
@@ -255,8 +255,11 @@ confirmation = tk.StringVar()
 radiobtn8 = Radiobutton(HealthCheck_Frame, text = 'Yes', value='Yes', bg="white",fg="black",variable = confirmation)
 radiobtn8.place(x=0, y=400)
 
+def action():
+    facialRecognition()
+
 # submit form button
-submit_button = Button(HealthCheck_Frame, text = "Submit")  
+submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('times new roman', 12))  
 submit_button.place(x=200, y=420)
 
 mainMenuFrame.grid()
