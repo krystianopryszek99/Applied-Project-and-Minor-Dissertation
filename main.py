@@ -96,6 +96,7 @@ def show_regMenu():
 def show_checkInMenu():
     mainMenuFrame.grid_forget()
     regMenuFrame.grid_forget()
+    healthMenuFrame.grid_forget()
     checkedInMenuFrame.grid()
 
 def show_healthCheckMenu():
