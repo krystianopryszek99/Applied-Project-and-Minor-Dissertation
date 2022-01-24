@@ -4,6 +4,7 @@ import face_recognition
 from datetime import datetime
 import os
 import mongoRetrieve
+import csv
 
 def retrieveUser():
     mongoRetrieve.retrieve()
@@ -40,32 +41,27 @@ def runRecognition():
         return encodeList
 
     # function to clock in
-    def clockIn(name):
-        # to open csv file to read and write
-        with open('clockingLog/ClockIn.csv', 'r+') as f:
-            # list of names
-            nameList = []
-            # if name is not present in the list
-            if name not in nameList:
-                currentTime = datetime.now()
-                timeString = currentTime.strftime('%H:%M:%S')
-                dateString = currentTime.strftime('%d/%m/%Y')
-                # writes the items of a list to the file 
-                f.writelines(f'\n{name},{timeString},{dateString}')
+    def checkIn(name):
+        # csv header
+        fieldnames = ['Student','Time', 'Date']
 
-    # function to clock out
-    def clockOut(name):
-        # to open csv file to read and write
-        with open('clockingLog/ClockOut.csv', 'r+') as f:
+        #write to csv file code here
+        with open('clockingLog/Logs.csv', 'a', newline = '') as f:
             # list of names
             nameList = []
             # if name is not present in the list
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
             if name not in nameList:
                 currentTime = datetime.now()
                 timeString = currentTime.strftime('%H:%M:%S')
                 dateString = currentTime.strftime('%d/%m/%Y')
-                # writes the items of a list to the file 
-                f.writelines(f'\n{name},{timeString},{dateString}')
+                if os.stat('clockingLog/Logs.csv').st_size == 0:
+                    writer.writeheader()
+                writer.writerow({
+                    'Student' : name,
+                    'Time' : timeString,
+                    'Date' : dateString,
+                })
 
     # This function will get all faces that it knows 
     getEncodeList = getEncodings(images)
@@ -110,7 +106,7 @@ def runRecognition():
                     cv2.imshow('Image Capturing',img)
                     # check in 
                     print(name + " has checked In!")
-                    clockIn(name)
+                    checkIn(name)
                     # Delete the image of the downloads folder after it has been retrieved from the database.
                     path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/download/" + name + ".jpg"
                     os.remove(path)
