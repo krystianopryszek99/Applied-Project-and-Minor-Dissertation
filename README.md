@@ -18,7 +18,7 @@
 - [How to run](#How-to-run)
 - [Demo](#Demo)
 - [Technologies used ](#Technologies-used)
-- [References](#Refrences)
+- [References](#References)
 
 # Overview
 This repository contains my final project which is a Clocking Management System using Face Recognition. The main idea of this project is to recognize users by their faces and check them in. In today's environment, people are forgetting their passwords/emails. The purpose of this project is so that no item is required to be carried or no password to be remembered, all it requires is the user’s face. Biometric authentication is very popular and I wanted to come up with a program that is user-friendly and authenticates users in a fast and smart way.
@@ -68,10 +68,18 @@ This is a current version of the program running, design and functionality are t
 - PyMongo - Tool for working with MongoDB.
 - OpenCV - Real-time computer vision.
 - Tkinter - Build GUI.
+- Dlib - [See this for version](requirements.md)
+- face_recognition - Recognizes faces
+- GridFS - Store and retrieve large files.
 
 # References
+
 - [Python](https://www.python.org/)
 - [MongoDB](https://account.mongodb.com/account/login?signedOut=true)
 - [PyMongo](https://docs.mongodb.com/drivers/pymongo/)
 - [OpenCV](https://opencv.org/)
 - [Tkinter](https://docs.python.org/3/library/tkinter.html)
+- [Dlib](http://dlib.net/)
+- [Face Recognition](https://pypi.org/project/face-recognition/)
+- [GridFS](https://docs.mongodb.com/manual/core/gridfs/)
+
