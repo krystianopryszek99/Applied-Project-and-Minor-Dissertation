@@ -47,16 +47,6 @@ The health check form is based on [GMIT Daily Health Check 2021](https://forms.o
 
 ## How to run 
 
-There are two ways of running the program, **1) run it through `Gitpod`** and **2) run it on your machine**.
-
-### Quick Steps 
-
-You can use Gitpod to code and run the program in the cloud. Provides automated dev environments in seconds.
-
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://krystianoprysze-appliedp-xggv9890kja.ws-eu29.gitpod.io/)
-
-### Run on your machine
-
 1. Clone this repository onto your machine.
 ```
 $ git clone https://github.com/krystianopryszek99/Applied-Project-and-Minor-Dissertation.git
