@@ -8,6 +8,7 @@ from tkinter import messagebox
 from time import strftime
 import cv2
 import faceRecognition
+import emailNotification
 import os
 import mongoStore
 import csv
@@ -27,6 +28,9 @@ def storeUser():
 
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")
+
+def sendEmail():
+    emailNotification.email_notification()
 
 def register():
     # if message box is empty, displays alert.
@@ -286,6 +290,7 @@ def action():
         # write a row to the csv file
         writer.writerows(rows)
     
+    sendEmail()
     facialRecognition()
 
 # submit form button

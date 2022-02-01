@@ -12,9 +12,9 @@ def email_notification(to, subject, body):
     message
 
     # Define user and password
-    user_name = "email goes here"
+    user_name = "gmit.management@gmail.com"
     message['from'] = user_name
-    password = "password goes here"
+    password = "yizzgiyvsvhtxkbw"
 
     # Server parameters
     server = smtplib.SMTP("smtp.gmail.com", 587)
@@ -22,3 +22,10 @@ def email_notification(to, subject, body):
     server.login(user_name, password)
     server.send_message(message)
     server.quit()
+
+    # Define: who the email is send to, subject of the email and the body
+    receiver_email = "G00723284@gmail.com"
+    subject_of_the_email = "GMIT - Health Check Form"
+    email_body = "Dear Student\n\n Thank you for completing the health check form!\n\n\n GMIT - Galway-Mayo Institute Of Technology"
+    print("Email has been sent!")
+    email_notification(receiver_email, subject_of_the_email, email_body)
