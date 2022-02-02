@@ -53,6 +53,7 @@ This outlines the main features of the project.
 - Program recognizes faces by the face encodings.
 - Program is capable of recognizing each person once saved in the database.
 - Health check form is required to be filled out before checking in.
+- Sends email after completing the health check form.
 - Capable of checking-in by face.
 
 ## How to run 
@@ -81,9 +82,10 @@ This is a current version of the program running, design and functionality are t
 - PyMongo - Tool for working with MongoDB.
 - OpenCV - Real-time computer vision.
 - Tkinter - Build GUI.
-- Dlib - [See this for version](requirements.md)
-- face_recognition - Recognizes faces
+- Dlib - [See this for version](requirements.md).
+- face_recognition - Recognizes faces.
 - GridFS - Store and retrieve large files.
+- email.message - Sends emails.
 
 ## References
 
@@ -95,3 +97,4 @@ This is a current version of the program running, design and functionality are t
 - [Dlib](http://dlib.net/)
 - [Face Recognition](https://pypi.org/project/face-recognition/)
 - [GridFS](https://docs.mongodb.com/manual/core/gridfs/)
+- [email.message](https://docs.python.org/3/library/email.message.html)
