@@ -45,6 +45,16 @@ The health check form is based on [GMIT Daily Health Check 2021](https://forms.o
 
 **(5) Result:** When the match is true (successful), it will authenticate the user and successfully check him in.
 
+## Project Features
+
+This outlines the main features of the project. 
+
+- Program is run using Python version 3.8.8 with some specified [here](#Technologies-used) libraries and tools. 
+- Program recognizes faces by the face encodings.
+- Program is capable of recognizing each person once saved in the database.
+- Health check form is required to be filled out before checking in.
+- Capable of checking-in by face.
+
 ## How to run 
 
 1. Clone this repository onto your machine.
