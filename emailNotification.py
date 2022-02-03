@@ -23,6 +23,8 @@ def email_notification(to, subject, body):
     server.send_message(message)
     server.quit()
 
+# Sends email when called
+def sendNotification():
     # Define: who the email is send to, subject of the email and the body
     receiver_email = "G00723284@gmail.com"
     subject_of_the_email = "GMIT - Health Check Form"

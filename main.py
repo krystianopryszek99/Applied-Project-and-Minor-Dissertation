@@ -30,7 +30,7 @@ def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")
 
 def sendEmail():
-    emailNotification.email_notification()
+    emailNotification.sendNotification()
 
 def register():
     # if message box is empty, displays alert.
