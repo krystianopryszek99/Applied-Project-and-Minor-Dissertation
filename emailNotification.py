@@ -1,6 +1,5 @@
 # Script for sending email notification to students after they fill out health check form 
 
-from http import server
 import smtplib
 from email.message import EmailMessage
 
@@ -10,6 +9,23 @@ def email_notification(to, subject, body):
     message['subject'] = subject
     message['to'] = to
     message
+
+    # Message body
+    message.add_alternative("""\
+    <!DOCTYPE html>
+    <html>
+        <body>
+            <p style="color:Black;">
+                Dear Student
+                <br><br>
+                Thank you for completing the health check form!
+                <br><br>
+                GMIT - Galway-Mayo Institute Of Technology
+                <br>
+            </p>
+        </body>
+    </html>
+    """, subtype='html')
 
     # Define user and password
     user_name = "gmit.management@gmail.com"
@@ -28,6 +44,7 @@ def sendNotification():
     # Define: who the email is send to, subject of the email and the body
     receiver_email = "G00723284@gmail.com"
     subject_of_the_email = "GMIT - Health Check Form"
-    email_body = "Dear Student\n\n Thank you for completing the health check form!\n\n\n GMIT - Galway-Mayo Institute Of Technology"
+    # Email body is defined but no content is passed in, uses HTML to print the content of the body
+    email_body = ""
     print("Email has been sent!")
     email_notification(receiver_email, subject_of_the_email, email_body)
