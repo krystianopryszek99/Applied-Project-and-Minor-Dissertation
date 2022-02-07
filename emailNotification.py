@@ -15,13 +15,18 @@ def email_notification(to, subject, body):
     <!DOCTYPE html>
     <html>
         <body>
-            <p style="color:Black;">
-                Dear Student
+            <p style="color:Black; font-family:verdana;">
+                Dear Student,
                 <br><br>
                 Thank you for completing the health check form!
-                <br><br>
+                <br><br><br><br>
+                <img src="https://www.lodplanner.com/wp-content/uploads/GMIT-logo.png" alt="Gmit Logo" width="398" height="78">
+                <br>
                 GMIT - Galway-Mayo Institute Of Technology
                 <br>
+                More on Covid-19: Covidofficer@gmit.ie
+                <br>
+                Visit Us: https://www.gmit.ie/
             </p>
         </body>
     </html>
