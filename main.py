@@ -24,7 +24,7 @@ def facialRecognition():
     faceRecognition.runRecognition()
 
 def storeUser():
-    mongoStore.store()
+    mongoStore.store(name)
 
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")

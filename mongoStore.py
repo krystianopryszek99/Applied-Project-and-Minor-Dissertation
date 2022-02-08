@@ -16,18 +16,16 @@ def mongo_conn():
         # print error message
         print("Error in mongo connection", e)
 
-def store():
+def store(name):
     # Stores the image on the database
     db = mongo_conn()
-    # name of the file
-    name = 'krystian.jpg'
     # location of the file
-    file_location = "images/" + name
+    file_location = "images/" + name.get() + ".jpg"
     # open the file 
     file_data = open(file_location, "rb")
     # read the file
     data = file_data.read()
     # store it in the database
     fs = gridfs.GridFS(db)
-    fs.put(data, filename = name)
+    fs.put(data, filename = name.get())
     print("upload completed")
