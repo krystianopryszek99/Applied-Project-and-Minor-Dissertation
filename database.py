@@ -1,7 +1,9 @@
 from pymongo import MongoClient
 import gridfs
+from tkinter import * 
+from tkinter import messagebox
 
-# Stores users from the database 
+# Stores and Retrieves users from the database 
 
 # Connection to the database
 def mongo_conn():
@@ -16,6 +18,7 @@ def mongo_conn():
         # print error message
         print("Error in mongo connection", e)
 
+# Function to store students to the database.
 def store(name):
     # Stores the image on the database
     db = mongo_conn()
@@ -29,3 +32,20 @@ def store(name):
     fs = gridfs.GridFS(db)
     fs.put(data, filename = name.get())
     print("upload completed")
+
+# Function to retrieve students from the database.
+def retrieve():
+    db = mongo_conn()
+    name = 'krystian.jpg'
+    # Retrieving the image from the database
+    data = db.fs.files.find_one({'filename': name})
+    # _id assigns a auto generated id in mongoDB 
+    my_id = data['_id'] 
+    fs = gridfs.GridFS(db)
+    outputdata = fs.get(my_id).read()
+    # saves the retrieved image in the downloads folder
+    download_location = "download/" + name
+    output = open(download_location, "wb")
+    output.write(outputdata)
+    output.close()
+    print("download completed")

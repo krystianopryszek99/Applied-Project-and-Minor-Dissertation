@@ -10,7 +10,7 @@ import cv2
 import faceRecognition
 import emailNotification
 import os
-import mongoStore
+import database
 import csv
 
 def time():
@@ -24,7 +24,7 @@ def facialRecognition():
     faceRecognition.runRecognition()
 
 def storeUser():
-    mongoStore.store(name)
+    database.store(name)
 
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")

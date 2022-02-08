@@ -3,11 +3,11 @@ import numpy as np
 import face_recognition
 from datetime import datetime
 import os
-import mongoRetrieve
+import database
 import csv
 
 def retrieveUser():
-    mongoRetrieve.retrieve()
+    database.retrieve()
 
 def runRecognition():
     retrieveUser()
