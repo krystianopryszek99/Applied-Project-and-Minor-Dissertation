@@ -85,6 +85,7 @@ This is a current version of the program running, design and functionality are t
 - Tkinter - Build GUI.
 - Dlib - [See this for version](requirements.md).
 - face_recognition - Recognizes faces.
+- time - module provides time related functions.
 - GridFS - Store and retrieve large files.
 - email.message - Sends emails.
 
@@ -97,5 +98,6 @@ This is a current version of the program running, design and functionality are t
 - [Tkinter](https://docs.python.org/3/library/tkinter.html)
 - [Dlib](http://dlib.net/)
 - [Face Recognition](https://pypi.org/project/face-recognition/)
+- [time](https://docs.python.org/3/library/time.html)
 - [GridFS](https://docs.mongodb.com/manual/core/gridfs/)
 - [email.message](https://docs.python.org/3/library/email.message.html)
