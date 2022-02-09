@@ -31,7 +31,7 @@ def store(name):
     # store it in the database
     fs = gridfs.GridFS(db)
     fs.put(data, filename = name.get())
-    print("upload completed")
+    messagebox.showinfo("Info", "Upload Completed!")
 
 # Function to retrieve students from the database.
 def retrieve():
@@ -48,4 +48,4 @@ def retrieve():
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()
-    print("download completed")
+    messagebox.showinfo("Info", "Download Completed!")
