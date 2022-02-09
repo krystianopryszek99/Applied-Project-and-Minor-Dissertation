@@ -16,6 +16,7 @@
 
 - [Overview](#Overview)
 - [Project Outline](#Project-Outline)
+- [Project Features](#Project-Features)
 - [How to run](#How-to-run)
 - [Demo](#Demo)
 - [Technologies used ](#Technologies-used)
