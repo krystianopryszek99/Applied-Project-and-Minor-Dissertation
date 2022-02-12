@@ -74,7 +74,7 @@ $ python main.py
 
 This is a current version of the program running, design and functionality are to be changed or updated.   
 
-![demo](https://user-images.githubusercontent.com/57759154/149583812-2d97607e-8048-4c9e-9e17-10ac95042dc8.gif)
+![demo3](https://user-images.githubusercontent.com/57759154/153722696-2c305be8-bb54-4804-8c8f-38c68732d057.gif)
 
 ## Technologies used 
 
