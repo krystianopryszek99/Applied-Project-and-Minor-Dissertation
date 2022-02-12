@@ -48,4 +48,4 @@ def retrieve():
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()
-    messagebox.showinfo("Info", "Download Completed!")
+    print("download completed")
