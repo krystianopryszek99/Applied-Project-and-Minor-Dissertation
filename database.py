@@ -18,8 +18,8 @@ def mongo_conn():
         # print error message
         print("Error in mongo connection", e)
 
-# Function to store students to the database.
-def store(name):
+# Function to store/retrieve students to/from the database.
+def store_retrieve(name):
     # Stores the image on the database
     db = mongo_conn()
     # location of the file
@@ -33,18 +33,15 @@ def store(name):
     fs.put(data, filename = name.get())
     messagebox.showinfo("Info", "Upload Completed!")
 
-# Function to retrieve students from the database.
-def retrieve():
     db = mongo_conn()
-    name = 'krystian.jpg'
     # Retrieving the image from the database
-    data = db.fs.files.find_one({'filename': name})
+    data = db.fs.files.find_one({'filename': name.get()})
     # _id assigns a auto generated id in mongoDB 
     my_id = data['_id'] 
     fs = gridfs.GridFS(db)
     outputdata = fs.get(my_id).read()
     # saves the retrieved image in the downloads folder
-    download_location = "download/" + name
+    download_location = "download/" + name.get() + ".jpg"
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()

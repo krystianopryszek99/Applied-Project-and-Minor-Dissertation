@@ -24,7 +24,7 @@ def facialRecognition():
     faceRecognition.runRecognition()
 
 def storeUser():
-    database.store(name)
+    database.store_retrieve(name)
 
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")

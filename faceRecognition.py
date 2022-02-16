@@ -6,11 +6,7 @@ import os
 import database
 import csv
 
-def retrieveUser():
-    database.retrieve()
-
 def runRecognition():
-    retrieveUser()
     path = 'download'
     # list of images
     images = []
