@@ -36,6 +36,9 @@ def runRecognition():
             encodeList.append(encode)
         return encodeList
 
+    def storeStudents(name, timeString, dateString):
+        database.store_logs(name, timeString, dateString)
+
     # function to clock in
     def checkIn(name):
         # csv header
@@ -58,6 +61,7 @@ def runRecognition():
                     'Time' : timeString,
                     'Date' : dateString,
                 })
+                storeStudents(name, timeString, dateString)
 
     # This function will get all faces that it knows 
     getEncodeList = getEncodings(images)

@@ -3,7 +3,7 @@ import gridfs
 from tkinter import * 
 from tkinter import messagebox
 
-# Stores and Retrieves users from the database 
+# Database script 
 
 # Connection to the database
 def mongo_conn():
@@ -46,3 +46,13 @@ def store_retrieve(name):
     output.write(outputdata)
     output.close()
     print("download completed")
+
+# Function to save student logs to the database
+def store_logs(name, timeString, dateString):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["logs"]
+
+    # saves student name, time and date they have checked in
+    post = {"Name": name, "Time": timeString, "Date": dateString}
+    collection.insert_one(post)
