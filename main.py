@@ -37,7 +37,7 @@ def register():
     if len(txt_name.get()) == 0:
         messagebox.showerror("Alert","Please enter your name")
     else:
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 
         img_counter = 0
 
