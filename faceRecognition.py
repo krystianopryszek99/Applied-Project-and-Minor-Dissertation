@@ -64,7 +64,7 @@ def runRecognition():
     print('Found Encodings')
 
     # initialising webcam
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW) 
 
     # while loop to get each frame one by one 
     while True:
@@ -104,8 +104,8 @@ def runRecognition():
                     print(name + " has checked In!")
                     checkIn(name)
                     # Delete the image of the downloads folder after it has been retrieved from the database.
-                    path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/download/" + name + ".jpg"
-                    os.remove(path)
+                    #path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/download/" + name + ".jpg"
+                    #os.remove(path)
                     cv2.waitKey(3000)
                     cap.release()
                     # destroys all the windows we created
