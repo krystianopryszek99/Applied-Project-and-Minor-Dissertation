@@ -52,9 +52,11 @@ This outlines the main features of the project.
 
 - Program is run using Python version 3.8.8 with some specified [here](#Technologies-used) libraries and tools. 
 - Program recognizes faces by the face encodings.
-- Program is capable of recognizing each person once saved in the database.
+- Program is capable of recognizing each student once saved in the database.
+- Students logs are stored in the database.
 - Health check form is required to be filled out before checking in.
 - Sends email after completing the health check form.
+- Health check form details are stored in the database.
 - Capable of checking-in by face.
 
 ## How to run 
