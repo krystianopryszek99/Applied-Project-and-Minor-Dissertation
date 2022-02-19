@@ -26,6 +26,9 @@ def facialRecognition():
 def storeUser():
     database.store_retrieve(name)
 
+def storeForm():
+    database.store_form(mobile_var, college_attend, confirmation)
+
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")
 
@@ -290,6 +293,7 @@ def action():
         # write a row to the csv file
         writer.writerows(rows)
     
+    storeForm()
     sendEmail()
     facialRecognition()
 

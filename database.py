@@ -53,6 +53,16 @@ def store_logs(name, timeString, dateString):
     db = cluster["Students"]
     collection = db["logs"]
 
-    # saves student name, time and date they have checked in
+    # saves student name, time and date they have checked in.
     post = {"Name": name, "Time": timeString, "Date": dateString}
+    collection.insert_one(post)
+
+# Function to save health check form details
+def store_form(mobile_var, college_attend, confirmation):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+
+    # saves students mobile number, college attending and the confirmation.
+    post = {"Mobile Number": mobile_var.get(), "College": college_attend.get(), "Confirmation": confirmation.get()}
     collection.insert_one(post)
