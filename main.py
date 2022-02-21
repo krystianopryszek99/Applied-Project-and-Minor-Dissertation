@@ -224,7 +224,10 @@ heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Ple
 heading_label.pack()
 
 mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('times new roman', 12, ' bold '))
-mobile_label.place(x=0, y=90)
+mobile_label.place(x=0, y=80)
+
+email_label = Label(HealthCheck_Frame,text = "Email: ",fg="black",font=('times new roman', 12, ' bold '))
+email_label.place(x=0, y=100)
 
 college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list below: ",fg="black",font=('times new roman', 12, ' bold '))
 college_label.place(x=0, y=120)
@@ -232,11 +235,16 @@ college_label.place(x=0, y=120)
 text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 (coronavirus) self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('times new roman', 12, ' bold '))
 text_label.place(x=10, y=250)
 
-# Name entry box
+# Mobile entry box
 mobile_var = tk.StringVar()
-name_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = mobile_var)
-name_entrybox.place(x=120, y=90)
-name_entrybox.focus()
+mobile_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = mobile_var)
+mobile_entrybox.place(x=120, y=80)
+mobile_entrybox.focus()
+
+# Email entry box
+email_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = email_var)
+email_entrybox.place(x=120, y=100)
+email_entrybox.focus()
 
 # Radio button
 college_attend = tk.StringVar()
