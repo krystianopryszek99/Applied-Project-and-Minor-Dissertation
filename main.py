@@ -242,6 +242,7 @@ mobile_entrybox.place(x=120, y=80)
 mobile_entrybox.focus()
 
 # Email entry box
+email_var = tk.StringVar()
 email_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = email_var)
 email_entrybox.place(x=120, y=100)
 email_entrybox.focus()
@@ -278,13 +279,15 @@ def action():
     mobile = mobile_var.get()
     college = college_attend.get()
     confirm = confirmation.get()
+    email = email_var.get()
 
     # csv header
-    fieldnames = ['Mobile Number','College Attending', 'Confirmation']
+    fieldnames = ['Mobile Number', 'Email', 'College Attending', 'Confirmation']
 
     # csv data
     rows = [
         {'Mobile Number' : mobile,
+        'Email' : email,
         'College Attending' : college,
         'Confirmation' : confirm}
     ]

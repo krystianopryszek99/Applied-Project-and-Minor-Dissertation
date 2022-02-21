@@ -1,16 +1,2 @@
-Mobile Number,College Attending,Confirmation
-087123456,"Dublin Road Campus, Galway",Yes
-0879898984,"Mayo Campus, Castlebar",Yes
-0865595329,"Letterfrack, County Galway",Yes
-0878873212,"Mountbellew Campus, County Galway",Yes
-0876654387,"All Core Gym, Ballybrit",Yes
-087123456,GMIT (Organised Field Trip),Yes
-0872342314,"Letterfrack, County Galway",Yes
-0871234567,"Dublin Road Campus, Galway",Yes
-087123456,"Dublin Road Campus, Galway",Yes
-08712345678,"Dublin Road Campus, Galway",Yes
-08712345678,"All Core Gym, Ballybrit",Yes
-087987653,"Dublin Road Campus, Galway",Yes
-087123123,"Mountbellew Campus, County Galway",Yes
-087123,"Mayo Campus, Castlebar",Yes
-0871237653,"Letterfrack, County Galway",Yes
+Mobile Number,Email,College Attending,Confirmation
+0871234567,test@test.com,"Dublin Road Campus, Galway",Yes
