@@ -33,7 +33,7 @@ def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")
 
 def sendEmail():
-    emailNotification.sendNotification()
+    emailNotification.sendNotification(email_var)
 
 def register():
     # if message box is empty, displays alert.
@@ -114,7 +114,6 @@ def show_healthCheckMenu():
 # Main Menu Frame
 
 mainMenuFrame = Frame(window)
-
 label=Label(mainMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
 label.grid(row=0, column=0, sticky="nsew")
 time()  
