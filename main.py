@@ -16,8 +16,8 @@ import csv
 def time():
     # Time and date
     string = strftime('%H:%M:%S %p \n %d/%m/%Y')
-    label.config(text=string)
-    label.after(1000, time)
+    time_label.config(text=string)
+    time_label.after(1000, time)
 
 def facialRecognition():
     show_checkInMenu()
@@ -114,8 +114,9 @@ def show_healthCheckMenu():
 # Main Menu Frame
 
 mainMenuFrame = Frame(window)
-label=Label(mainMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
-label.grid(row=0, column=0, sticky="nsew")
+
+time_label=Label(mainMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
+time_label.grid(row=0, column=0, sticky="nsew")
 time()  
 
 Frame(mainMenuFrame).grid(row=1, column=0, padx=514, pady=500)
@@ -176,8 +177,7 @@ BackButton.place(x=10, y=330)
 checkedInMenuFrame = Frame(window)
 
 label=Label(checkedInMenuFrame, font=("times new roman", 30, "bold"), bg="grey", fg="white")
-label.grid(row=0, column=0, sticky="nsew")
-time()  
+label.grid(row=0, column=0, sticky="nsew") 
 
 Frame(checkedInMenuFrame).grid(row=1, column=0, padx=514, pady=500)
 
