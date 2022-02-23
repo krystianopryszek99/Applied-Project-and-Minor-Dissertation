@@ -27,7 +27,7 @@ def storeUser():
     database.store_retrieve(name)
 
 def storeForm():
-    database.store_form(mobile_var, college_attend, confirmation)
+    database.store_form(mobile_var, email_var, college_attend, confirmation)
 
 def alreadyCheckedIn():
     messagebox.showerror("Alert","You are already checked In!")
