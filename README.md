@@ -55,6 +55,7 @@ This outlines the main features of the project.
 - Program is capable of recognizing each student once saved in the database.
 - Students logs are stored in the database.
 - Health check form is required to be filled out before checking in.
+- Students have to enter mobile number, email address, college attending and confirmation.
 - Sends email after completing the health check form.
 - Health check form details are stored in the database.
 - Capable of checking-in by face.
