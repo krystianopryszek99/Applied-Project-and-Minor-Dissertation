@@ -7,7 +7,7 @@ from tkinter import messagebox
 
 from time import strftime
 import cv2
-import faceRecognition
+import face
 import emailNotification
 import os
 import database
@@ -21,7 +21,7 @@ def time():
 
 def facialRecognition():
     show_checkInMenu()
-    faceRecognition.runRecognition()
+    face.Face_Match()
 
 def storeUser():
     database.store_retrieve(name)
