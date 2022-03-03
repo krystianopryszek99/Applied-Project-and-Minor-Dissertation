@@ -20,6 +20,7 @@ def time():
     time_label.after(1000, time)
 
 def facialRecognition():
+    show_mainMenuFrame()
     face.Face_Match()
 
 def storeUser():
@@ -89,6 +90,7 @@ window.title("Clocking Management System")
 
 def show_mainMenuFrame():
     regMenuFrame.grid_forget()
+    healthMenuFrame.grid_forget()
     mainMenuFrame.grid()
 
 def show_regMenu():

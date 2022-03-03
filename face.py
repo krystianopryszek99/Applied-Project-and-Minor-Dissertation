@@ -102,6 +102,9 @@ class Face_Match:
             lbl_name3 = Label(Left_Frame, image=img)
             lbl_name3.place(x=0, y=0)
 
+            # close after 5 seconds
+            root.after(5000, root.destroy)
+
             root.mainloop()
 
         # This function will get all faces that it knows 
