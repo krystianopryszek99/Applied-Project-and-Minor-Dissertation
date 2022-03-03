@@ -84,9 +84,9 @@ def closeProgram():
 # User Interface (Main Menu) 
 
 window = tk.Tk()
-window.geometry("1028x520")
+window.attributes('-fullscreen',True)
 window.resizable(True,False)
-window.title("Clocking Management System")   
+window.title("Clocking Management System")      
 
 # Stores the name when registering 
 name = tk.StringVar()
@@ -113,21 +113,21 @@ def show_healthCheckMenu():
 
 # Main Menu Frame
 
-mainMenuFrame = Frame(window)
+mainMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
 
 time_label=Label(mainMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
 time_label.grid(row=0, column=0, sticky="nsew")
 time()  
 
-Frame(mainMenuFrame).grid(row=1, column=0, padx=514, pady=500)
+Frame(mainMenuFrame).grid(row=1, column=0, padx=800, pady=800)
 
 # Left Frame
 Left_Frame=Frame(mainMenuFrame,bd=4,relief=RIDGE, bg="white")
-Left_Frame.place(x=0, y=95, width=520, height=425)
+Left_Frame.place(x=250, y=200, width=520, height=425)
 
 # Right Frame
 Right_Frame=Frame(mainMenuFrame,bd=4,relief=RIDGE, bg="white")
-Right_Frame.place(x=510, y=95, width=520, height=425)
+Right_Frame.place(x=760, y=200, width=520, height=425)
 
 lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
 lbl.pack(side=TOP, fill=X)
@@ -153,11 +153,11 @@ RegButton.place(x=100, y=170)
 
 regMenuFrame = Frame(window, bg="#447c84")
 
-Frame(regMenuFrame).grid(row=1, column=0, padx=514, pady=500)
+Frame(regMenuFrame).grid(row=1, column=0, padx=768, pady=800)
 
 # Reg Frame
 Reg_Frame=Frame(regMenuFrame,bd=4,relief=RIDGE, bg="white")
-Reg_Frame.place(x=300, y=95, width=400, height=400)
+Reg_Frame.place(x=565, y=200, width=400, height=400)
 
 lbl_name = Label(Reg_Frame, text="Name", bg="white",fg="black",font=('times new roman', 20, ' bold '))
 lbl_name.place(x=50, y=50)
@@ -174,20 +174,20 @@ BackButton.place(x=10, y=330)
 
 # Checked-in menu frame
 
-checkedInMenuFrame = Frame(window)
+checkedInMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
 
 label=Label(checkedInMenuFrame, font=("times new roman", 30, "bold"), bg="grey", fg="white")
 label.grid(row=0, column=0, sticky="nsew") 
 
-Frame(checkedInMenuFrame).grid(row=1, column=0, padx=514, pady=500)
+Frame(checkedInMenuFrame).grid(row=1, column=0, padx=800, pady=800)
 
 # Left Frame
-Left_Frame=Frame(checkedInMenuFrame,bd=4, relief=RIDGE, bg="white")
-Left_Frame.place(x=0, y=95, width=520, height=425)
+Left_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
+Left_Frame.place(x=250, y=200, width=520, height=425)
 
 # Right Frame
-Right_Frame=Frame(checkedInMenuFrame,bd=4, relief=RIDGE, bg="white")
-Right_Frame.place(x=510, y=95, width=520, height=425)
+Right_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
+Right_Frame.place(x=760, y=200, width=520, height=425)
 
 lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="green", fg="white")
 lbl.pack(side=TOP, fill=X)
@@ -217,7 +217,7 @@ Frame(healthMenuFrame).grid(row=0, column=0, padx=1000, pady=500)
 
 # HealthCheck Frame
 HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE)
-HealthCheck_Frame.place(x=120, y=20, width=800, height=480)
+HealthCheck_Frame.place(x=350, y=200, width=800, height=480)
 
 heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
 heading_label.pack()
