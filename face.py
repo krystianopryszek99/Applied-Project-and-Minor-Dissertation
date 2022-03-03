@@ -5,6 +5,11 @@ from datetime import datetime
 import os
 import database
 import csv
+from tkinter import * 
+import tkinter as tk
+from PIL import ImageTk, Image
+from time import strftime
+import time
 
 class Face_Match: 
 
@@ -65,6 +70,40 @@ class Face_Match:
                     })
                     storeStudents(name, self.timeString, self.dateString)
 
+        # Checked in menu - displayed when student is successfully matched.
+        def checked_menu(name):
+            root = Toplevel()
+            root.attributes('-fullscreen',True)
+            root.resizable(True,False)
+            root.title("Clocking Management System")   
+            root.configure(bg='#447c84')
+
+            label=Label(root, font=("times new roman", 30, "bold"),bg="grey", fg="white")
+            label.pack(side=TOP, fill=X)
+            # Time and date
+            string = strftime('%H:%M:%S %p \n %d/%m/%Y')
+            label.config(text=string)
+            label.after(1000, time)
+
+            # Left Frame 
+            Left_Frame=Frame(root,bd=4,relief=RIDGE, bg="white")
+            Left_Frame.place(x=250, y=200, width=520, height=425)
+
+            # Right Frame
+            Right_Frame=Frame(root,bd=4,relief=RIDGE, bg="white")
+            Right_Frame.place(x=760, y=200, width=520, height=425)
+
+            lbl_studentID = Label(Right_Frame, text="Student ID: " +  name, bg="white",fg="black",font=('times new roman', 15, ' bold '))
+            lbl_studentID.place(x=50, y=60)
+
+            image = Image.open("download/" + name + ".jpg")
+            img = ImageTk.PhotoImage(image)
+
+            lbl_name3 = Label(Left_Frame, image=img)
+            lbl_name3.place(x=0, y=0)
+
+            root.mainloop()
+
         # This function will get all faces that it knows 
         self.getEncodeList = getEncodings(self.images)
         print('Found Encodings')
@@ -117,3 +156,4 @@ class Face_Match:
                         self.cap.release()
                         # destroys all the windows we created
                         cv2.destroyAllWindows()
+                        checked_menu(self.name)

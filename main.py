@@ -20,7 +20,6 @@ def time():
     time_label.after(1000, time)
 
 def facialRecognition():
-    show_checkInMenu()
     face.Face_Match()
 
 def storeUser():
@@ -88,23 +87,13 @@ window.attributes('-fullscreen',True)
 window.resizable(True,False)
 window.title("Clocking Management System")      
 
-# Stores the name when registering 
-name = tk.StringVar()
-
 def show_mainMenuFrame():
     regMenuFrame.grid_forget()
     mainMenuFrame.grid()
 
 def show_regMenu():
     mainMenuFrame.grid_forget()
-    checkedInMenuFrame.grid_forget()
     regMenuFrame.grid()
-
-def show_checkInMenu():
-    mainMenuFrame.grid_forget()
-    regMenuFrame.grid_forget()
-    healthMenuFrame.grid_forget()
-    checkedInMenuFrame.grid()
 
 def show_healthCheckMenu():
     mainMenuFrame.grid_forget()
@@ -162,6 +151,8 @@ Reg_Frame.place(x=565, y=200, width=400, height=400)
 lbl_name = Label(Reg_Frame, text="Name", bg="white",fg="black",font=('times new roman', 20, ' bold '))
 lbl_name.place(x=50, y=50)
 
+# Stores the name when registering 
+name = tk.StringVar()
 txt_name=Entry(Reg_Frame,textvariable=name, font=('times new roman', 20, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=50, y=100)
 
@@ -171,43 +162,6 @@ RegButton.place(x=100, y=200)
 
 BackButton = tk.Button(Reg_Frame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('times new roman', 15, ' bold '))
 BackButton.place(x=10, y=330)
-
-# Checked-in menu frame
-
-checkedInMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
-
-label=Label(checkedInMenuFrame, font=("times new roman", 30, "bold"), bg="grey", fg="white")
-label.grid(row=0, column=0, sticky="nsew") 
-
-Frame(checkedInMenuFrame).grid(row=1, column=0, padx=800, pady=800)
-
-# Left Frame
-Left_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
-Left_Frame.place(x=250, y=200, width=520, height=425)
-
-# Right Frame
-Right_Frame=Frame(checkedInMenuFrame,bd=4,relief=RIDGE, bg="white")
-Right_Frame.place(x=760, y=200, width=520, height=425)
-
-lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="green", fg="white")
-lbl.pack(side=TOP, fill=X)
-alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="green", fg="white", font=('times new roman', 20, ' bold '))
-alreadyReg_title.place(x=140, y=10)
-
-lbl=Label(Right_Frame, font=("times new roman", 40, "bold"),bg="green", fg="white")
-lbl.pack(side=TOP, fill=X)
-newUsers_title = Label(Right_Frame, text="New Users", bg="green", fg="white", font=('times new roman', 20, ' bold '))
-newUsers_title.place(x=180, y=10)
-
-# Buttons for checked-in menu
-clockInButton = tk.Button(Left_Frame, text="Check In", command=alreadyCheckedIn, fg="white"  ,bg="green"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
-clockInButton.place(x=100, y=100)
-
-ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
-ExitButton.place(x=100, y=230)
-
-RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground="white" ,font=('times new roman', 30, ' bold '))
-RegButton.place(x=100, y=170)
 
 # Health Check Form Menu
 
