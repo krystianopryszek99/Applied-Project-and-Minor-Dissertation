@@ -29,9 +29,6 @@ def storeUser():
 def storeForm():
     database.store_form(mobile_var, email_var, college_attend, confirmation)
 
-def alreadyCheckedIn():
-    messagebox.showerror("Alert","You are already checked In!")
-
 def sendEmail():
     emailNotification.sendNotification(email_var)
 
@@ -106,7 +103,7 @@ def show_healthCheckMenu():
 
 mainMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
 
-time_label=Label(mainMenuFrame, font=("times new roman", 30, "bold"),bg="grey", fg="white")
+time_label=Label(mainMenuFrame, font=("Helvetica", 30, "bold"),bg="grey", fg="white")
 time_label.grid(row=0, column=0, sticky="nsew")
 time()  
 
@@ -120,24 +117,24 @@ Left_Frame.place(x=250, y=200, width=520, height=425)
 Right_Frame=Frame(mainMenuFrame,bd=4,relief=RIDGE, bg="white")
 Right_Frame.place(x=760, y=200, width=520, height=425)
 
-lbl=Label(Left_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl=Label(Left_Frame, font=("Helvetica", 40, "bold"),bg="blue", fg="white")
 lbl.pack(side=TOP, fill=X)
-alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+alreadyReg_title = Label(Left_Frame, text="Already Registered", bg="blue", fg="white", font=('Helvetica', 20, ' bold '))
 alreadyReg_title.place(x=140, y=10)
 
-lbl=Label(Right_Frame, font=("times new roman", 40, "bold"),bg="blue", fg="white")
+lbl=Label(Right_Frame, font=("Helvetica", 40, "bold"),bg="blue", fg="white")
 lbl.pack(side=TOP, fill=X)
-newUsers_title = Label(Right_Frame, text="New Users", bg="blue", fg="white", font=('times new roman', 20, ' bold '))
+newUsers_title = Label(Right_Frame, text="New Users", bg="blue", fg="white", font=('Helvetica', 20, ' bold '))
 newUsers_title.place(x=180, y=10)
 
 # Buttons 
-clockInButton = tk.Button(Left_Frame, text="Check In", command=show_healthCheckMenu, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+clockInButton = tk.Button(Left_Frame, text="Check In", command=show_healthCheckMenu, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 clockInButton.place(x=100, y=100)
 
-ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 ExitButton.place(x=100, y=230)
 
-RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('times new roman', 30, ' bold '))
+RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 RegButton.place(x=100, y=170)
 
 # Registration Menu Frame
@@ -150,19 +147,19 @@ Frame(regMenuFrame).grid(row=1, column=0, padx=768, pady=800)
 Reg_Frame=Frame(regMenuFrame,bd=4,relief=RIDGE, bg="white")
 Reg_Frame.place(x=565, y=200, width=400, height=400)
 
-lbl_name = Label(Reg_Frame, text="Name", bg="white",fg="black",font=('times new roman', 20, ' bold '))
+lbl_name = Label(Reg_Frame, text="Name", bg="white",fg="black",font=('Helvetica', 20, ' bold '))
 lbl_name.place(x=50, y=50)
 
 # Stores the name when registering 
 name = tk.StringVar()
-txt_name=Entry(Reg_Frame,textvariable=name, font=('times new roman', 20, ' bold '),bd=5,relief=GROOVE)
+txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 20, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=50, y=100)
 
 # Buttons 
-RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('times new roman', 20, ' bold '))
+RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 RegButton.place(x=100, y=200)
 
-BackButton = tk.Button(Reg_Frame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('times new roman', 15, ' bold '))
+BackButton = tk.Button(Reg_Frame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=330)
 
 # Health Check Form Menu
@@ -178,16 +175,16 @@ HealthCheck_Frame.place(x=350, y=200, width=800, height=480)
 heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
 heading_label.pack()
 
-mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('times new roman', 12, ' bold '))
+mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('Helvetica', 12, ' bold '))
 mobile_label.place(x=0, y=80)
 
-email_label = Label(HealthCheck_Frame,text = "Email: ",fg="black",font=('times new roman', 12, ' bold '))
+email_label = Label(HealthCheck_Frame,text = "Email: ",fg="black",font=('Helvetica', 12, ' bold '))
 email_label.place(x=0, y=100)
 
-college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list below: ",fg="black",font=('times new roman', 12, ' bold '))
+college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list below: ",fg="black",font=('Helvetica', 12, ' bold '))
 college_label.place(x=0, y=120)
 
-text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 (coronavirus) self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('times new roman', 12, ' bold '))
+text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
 text_label.place(x=10, y=250)
 
 # Mobile entry box
@@ -264,7 +261,7 @@ def action():
     facialRecognition()
 
 # submit form button
-submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('times new roman', 12))  
+submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('Helvetica', 12))  
 submit_button.place(x=350, y=430)
 
 mainMenuFrame.grid()

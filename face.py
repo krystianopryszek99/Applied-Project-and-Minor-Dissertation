@@ -78,7 +78,7 @@ class Face_Match:
             root.title("Clocking Management System")   
             root.configure(bg='#447c84')
 
-            label=Label(root, font=("times new roman", 30, "bold"),bg="grey", fg="white")
+            label=Label(root, font=("Helvetica", 30, "bold"),bg="grey", fg="white")
             label.pack(side=TOP, fill=X)
             # Time and date
             string = strftime('%H:%M:%S %p \n %d/%m/%Y')
@@ -93,7 +93,7 @@ class Face_Match:
             Right_Frame=Frame(root,bd=4,relief=RIDGE, bg="white")
             Right_Frame.place(x=760, y=200, width=520, height=425)
 
-            lbl_studentID = Label(Right_Frame, text="Student ID: " +  name, bg="white",fg="black",font=('times new roman', 15, ' bold '))
+            lbl_studentID = Label(Right_Frame, text="Student ID: " +  name, bg="white",fg="black",font=('Helvetica', 15, ' bold '))
             lbl_studentID.place(x=50, y=60)
 
             image = Image.open("download/" + name + ".jpg")
@@ -137,7 +137,7 @@ class Face_Match:
                 
                 if self.matches[self.matchIndex]:
                     # show name of the best match
-                    self.name = self.classNames[self.matchIndex].upper()
+                    self.name = self.classNames[self.matchIndex]
                     print(self.name)
                     y1,x2,y2,x1 = self.faceLocation
                     y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
