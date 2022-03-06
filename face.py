@@ -96,6 +96,18 @@ class Face_Match:
             lbl_studentID = Label(Right_Frame, text="Student ID: " +  name, bg="white",fg="black",font=('Helvetica', 15, ' bold '))
             lbl_studentID.place(x=50, y=60)
 
+            lbl_time = Label(Right_Frame, text="Time: " + strftime("%H:%M:%S"), bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+            lbl_time.place(x=50, y=100)
+
+            lbl_date = Label(Right_Frame, text="Date: " + strftime("%d/%m/%Y"), bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+            lbl_date.place(x=50, y=140)
+
+            lbl_verify = Label(Right_Frame, text="Verify: " + "Face Recognition", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+            lbl_verify.place(x=50, y=180)
+
+            lbl_info = Label(Right_Frame, text="Successfully verified.", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+            lbl_info.place(x=50, y=220)
+
             image = Image.open("download/" + name + ".jpg")
             img = ImageTk.PhotoImage(image)
 
@@ -155,7 +167,7 @@ class Face_Match:
                         #path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/download/" + name + ".jpg"
                         #os.remove(path)
                         # After matching known face, program waits for 5 seconds and then closes.
-                        cv2.waitKey(5000)
+                        cv2.waitKey(3000)
                         self.cap.release()
                         # destroys all the windows we created
                         cv2.destroyAllWindows()
