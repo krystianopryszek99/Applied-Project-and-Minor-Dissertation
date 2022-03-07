@@ -147,20 +147,31 @@ Frame(regMenuFrame).grid(row=1, column=0, padx=768, pady=800)
 Reg_Frame=Frame(regMenuFrame,bd=4,relief=RIDGE, bg="white")
 Reg_Frame.place(x=565, y=200, width=400, height=400)
 
-lbl_name = Label(Reg_Frame, text="Name", bg="white",fg="black",font=('Helvetica', 20, ' bold '))
-lbl_name.place(x=50, y=50)
+label=Label(regMenuFrame, text="\nRegistration Form\n________________________", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label.grid(row=0, column=0, sticky="nsew")
+
+lbl_name = Label(Reg_Frame, text="Student ID *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+lbl_name.place(x=50, y=40)
 
 # Stores the name when registering 
 name = tk.StringVar()
-txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 20, ' bold '),bd=5,relief=GROOVE)
-txt_name.place(x=50, y=100)
+txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+txt_name.place(x=50, y=70)
+
+lbl_email = Label(Reg_Frame, text="Email *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+lbl_email.place(x=50, y=110)
+
+# Stores the email when registering 
+email_var = tk.StringVar()
+txt_email=Entry(Reg_Frame,textvariable=email_var, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+txt_email.place(x=50, y=140)
 
 # Buttons 
 RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-RegButton.place(x=100, y=200)
+RegButton.place(x=90, y=280)
 
-BackButton = tk.Button(Reg_Frame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=330)
+BackButton = tk.Button(regMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
 
 # Health Check Form Menu
 
