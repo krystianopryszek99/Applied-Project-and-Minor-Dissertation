@@ -187,28 +187,22 @@ heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Ple
 heading_label.pack()
 
 mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('Helvetica', 12, ' bold '))
-mobile_label.place(x=0, y=80)
+mobile_label.place(x=0, y=90)
 
-email_label = Label(HealthCheck_Frame,text = "Email: ",fg="black",font=('Helvetica', 12, ' bold '))
-email_label.place(x=0, y=100)
-
-college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list below: ",fg="black",font=('Helvetica', 12, ' bold '))
+college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list: ",fg="black",font=('Helvetica', 12, ' bold '))
 college_label.place(x=0, y=120)
 
-text_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
-text_label.place(x=10, y=250)
+info_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
+info_label.place(x=10, y=250)
+
+confirm_label = Label(HealthCheck_Frame,text = "Click Here: ",fg="black",font=('Helvetica', 10, ' bold '))
+confirm_label.place(x=120, y=430)
 
 # Mobile entry box
 mobile_var = tk.StringVar()
 mobile_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = mobile_var)
-mobile_entrybox.place(x=120, y=80)
+mobile_entrybox.place(x=130, y=90)
 mobile_entrybox.focus()
-
-# Email entry box
-email_var = tk.StringVar()
-email_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = email_var)
-email_entrybox.place(x=120, y=100)
-email_entrybox.focus()
 
 # Radio button
 college_attend = tk.StringVar()
@@ -216,27 +210,31 @@ radiobtn1 = ttk.Radiobutton(HealthCheck_Frame, text = 'Dublin Road Campus, Galwa
 radiobtn1.place(x=150, y=150)
 
 radiobtn2 = ttk.Radiobutton(HealthCheck_Frame, text = 'Mayo Campus, Castlebar', value='Mayo Campus, Castlebar',variable = college_attend)
-radiobtn2.place(x=400, y=120)
+radiobtn2.place(x=450, y=120)
 
 radiobtn3 = ttk.Radiobutton(HealthCheck_Frame, text = 'CCAM, Cluain Mhuire, Galway', value='CCAM, Cluain Mhuire, Galway',variable = college_attend)
 radiobtn3.place(x=150, y=180)
 
 radiobtn4 = ttk.Radiobutton(HealthCheck_Frame, text = 'All Core Gym, Ballybrit', value='All Core Gym, Ballybrit',variable = college_attend)
-radiobtn4.place(x=400, y=150)
+radiobtn4.place(x=450, y=150)
 
 radiobtn5 = ttk.Radiobutton(HealthCheck_Frame, text = 'Mountbellew Campus, County Galway', value='Mountbellew Campus, County Galway',variable = college_attend)
 radiobtn5.place(x=150, y=210)
 
 radiobtn6 = ttk.Radiobutton(HealthCheck_Frame, text = 'Letterfrack, County Galway', value='Letterfrack, County Galway',variable = college_attend)
-radiobtn6.place(x=400, y=180)
+radiobtn6.place(x=450, y=180)
 
 radiobtn7 = ttk.Radiobutton(HealthCheck_Frame, text = 'GMIT (Organised Field Trip)', value='GMIT (Organised Field Trip)', variable = college_attend)
-radiobtn7.place(x=400, y=210)
+radiobtn7.place(x=450, y=210)
 
 # Confirmation
 confirmation = tk.StringVar()
-radiobtn8 = ttk.Radiobutton(HealthCheck_Frame, text = 'Yes', value='Yes', variable = confirmation)
+radiobtn8 = ttk.Radiobutton(HealthCheck_Frame, text = 'YES', value='Yes', variable = confirmation)
 radiobtn8.place(x=200, y=430)
+
+# Buttons
+BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
 
 def action():
     mobile = mobile_var.get()
