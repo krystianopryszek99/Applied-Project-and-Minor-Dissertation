@@ -23,12 +23,6 @@ def facialRecognition():
     show_mainMenuFrame()
     face.Face_Match()
 
-def storeUser():
-    database.store_retrieve(name)
-
-def storeForm():
-    database.store_form(mobile_var, email_var, college_attend, confirmation)
-
 def sendEmail():
     emailNotification.sendNotification(email_var)
 
@@ -63,7 +57,8 @@ def register():
                 img_name = "images/" + name.get() + ".jpg".format(img_counter)
                 cv2.imwrite(img_name, frame)
                 # store user to database
-                storeUser()
+                database.store_retrieve(name)
+                database.store_email(email_var)
                 # Delete the image of the images folder after it has been stored on the database.
                 path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
                 os.remove(path)
@@ -240,15 +235,13 @@ def action():
     mobile = mobile_var.get()
     college = college_attend.get()
     confirm = confirmation.get()
-    email = email_var.get()
 
     # csv header
-    fieldnames = ['Mobile Number', 'Email', 'College Attending', 'Confirmation']
+    fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
 
     # csv data
     rows = [
         {'Mobile Number' : mobile,
-        'Email' : email,
         'College Attending' : college,
         'Confirmation' : confirm}
     ]
@@ -265,8 +258,8 @@ def action():
         # write a row to the csv file
         writer.writerows(rows)
     
-    storeForm()
-    sendEmail()
+    database.store_form(mobile_var, college_attend, confirmation)
+    #sendEmail()
     facialRecognition()
 
 # submit form button

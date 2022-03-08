@@ -12,7 +12,7 @@ def mongo_conn():
         conn = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         # print the message or
         print("MongoDB connected", conn)
-        return conn.Images
+        return conn.Registration
         # if there is no connection then 
     except Exception as e:
         # print error message
@@ -58,11 +58,19 @@ def store_logs(name, timeString, dateString):
     collection.insert_one(post)
 
 # Function to save health check form details
-def store_form(mobile_var,email_var, college_attend, confirmation):
+def store_form(mobile_var, college_attend, confirmation):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Students"]
     collection = db["health_check_form"]
 
     # saves students mobile number, college attending and the confirmation.
-    post = {"Mobile Number": mobile_var.get(), "Email": email_var.get(), "College": college_attend.get(), "Confirmation": confirmation.get()}
+    post = {"Mobile Number": mobile_var.get(), "College": college_attend.get(), "Confirmation": confirmation.get()}
+    collection.insert_one(post)
+
+def store_email(email_var):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["student_details"]
+
+    post = {"Email": email_var.get()}
     collection.insert_one(post)
