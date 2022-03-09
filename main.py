@@ -23,9 +23,6 @@ def facialRecognition():
     show_mainMenuFrame()
     face.Face_Match()
 
-def sendEmail():
-    emailNotification.sendNotification(email_var)
-
 def register():
     # if message box is empty, displays alert.
     if len(txt_name.get()) == 0:
@@ -59,6 +56,7 @@ def register():
                 # store user to database
                 database.store_retrieve(name)
                 database.store_email(email_var)
+                emailNotification.sendNotification(email_var)
                 # Delete the image of the images folder after it has been stored on the database.
                 path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
                 os.remove(path)
@@ -259,7 +257,6 @@ def action():
         writer.writerows(rows)
     
     database.store_form(mobile_var, college_attend, confirmation)
-    #sendEmail()
     facialRecognition()
 
 # submit form button

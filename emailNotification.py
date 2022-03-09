@@ -15,13 +15,17 @@ def email_notification(to, subject, body):
     <!DOCTYPE html>
     <html>
         <body>
-            <p style="color:Black; font-family:verdana;">
+            <p style="color:Black; font-family:Helvetica;">
                 Dear Student,
                 <br><br>
-                Thank you for completing the health check form!
-                <br><br><br><br>
-                <img src="https://www.lodplanner.com/wp-content/uploads/GMIT-logo.png" alt="Gmit Logo" width="398" height="78">
+                <b>Thanks for the registration!</b>
+                <br><br>
+                Your account is now successfully created. You now have access to check in!
                 <br>
+                All your information is being stored securly on the database.
+                <br><br><br>
+                <img src="https://cualliance.ie/wp-content/uploads/2020/04/logo-1-copy.png" alt="Gmit Logo" width="398" height="78">
+                <br><br>
                 GMIT - Galway-Mayo Institute Of Technology
                 <br>
                 More on Covid-19: Covidofficer@gmit.ie
@@ -48,7 +52,7 @@ def email_notification(to, subject, body):
 def sendNotification(email_var):
     # Define: who the email is send to, subject of the email and the body
     receiver_email = email_var.get()
-    subject_of_the_email = "GMIT - Health Check Form"
+    subject_of_the_email = "CMS - Registration"
     # Email body is defined but no content is passed in, uses HTML to print the content of the body
     email_body = ""
     print("Email has been sent!")
