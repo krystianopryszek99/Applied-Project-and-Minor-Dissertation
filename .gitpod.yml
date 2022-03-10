@@ -2,6 +2,13 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - command: python main.py
+  - init: pip install --upgrade pip
+  - name: python-modules
+    command: >
+      pip install opencv-python &&
+      pip install face_recognition &&
+      pip install pymongo &&
+      python main.py
+
 
 
