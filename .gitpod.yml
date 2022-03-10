@@ -6,7 +6,6 @@ tasks:
     init: >
       pip install --upgrade pip &&
       gp sync-done bundle # 'bundle' is an arbitrary name
-    command: rails server
 
   - name: python-modules
     init: gp sync-await bundle # wait for the above 'init' to finish
