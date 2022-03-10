@@ -3,14 +3,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name: pip-upgrade
-    init: >
-      pip install --upgrade pip &&
-      gp sync-done bundle # 'bundle' is an arbitrary name
-
-  - name: python-modules
-    init: gp sync-await bundle # wait for the above 'init' to finish
+  - name: python-installs
     command: >
+      pip install --upgrade pip &&
+      python3 -m pip install --upgrade pip setuptools wheel &&
       pip install cmake &&
       pip install opencv-python &&
       pip install face_recognition &&
