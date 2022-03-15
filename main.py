@@ -55,8 +55,8 @@ def register():
                 cv2.imwrite(img_name, frame)
                 # store user to database
                 database.store_retrieve(name)
-                database.store_email(email_var)
-                emailNotification.sendNotification(email_var)
+                database.store_email(name)
+                emailNotification.sendNotification(name)
                 # Delete the image of the images folder after it has been stored on the database.
                 path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
                 os.remove(path)
@@ -151,13 +151,13 @@ name = tk.StringVar()
 txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=50, y=70)
 
-lbl_email = Label(Reg_Frame, text="Email *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
-lbl_email.place(x=50, y=110)
+#lbl_email = Label(Reg_Frame, text="Email *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+#lbl_email.place(x=50, y=110)
 
 # Stores the email when registering 
-email_var = tk.StringVar()
-txt_email=Entry(Reg_Frame,textvariable=email_var, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
-txt_email.place(x=50, y=140)
+#email_var = tk.StringVar()
+#txt_email=Entry(Reg_Frame,textvariable=email_var, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+#txt_email.place(x=50, y=140)
 
 # Buttons 
 RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))

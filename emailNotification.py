@@ -49,9 +49,9 @@ def email_notification(to, subject, body):
     server.quit()
 
 # Sends email when called
-def sendNotification(email_var):
+def sendNotification(name):
     # Define: who the email is send to, subject of the email and the body
-    receiver_email = email_var.get()
+    receiver_email = name.get() + "@gmit.ie"
     subject_of_the_email = "CMS - Registration"
     # Email body is defined but no content is passed in, uses HTML to print the content of the body
     email_body = ""

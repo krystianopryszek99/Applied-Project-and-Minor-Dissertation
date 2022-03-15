@@ -67,10 +67,10 @@ def store_form(mobile_var, college_attend, confirmation):
     post = {"Mobile Number": mobile_var.get(), "College": college_attend.get(), "Confirmation": confirmation.get()}
     collection.insert_one(post)
 
-def store_email(email_var):
+def store_email(name):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Registration"]
     collection = db["student_details"]
 
-    post = {"Email": email_var.get()}
+    post = {"Email": name.get() + "@gmit.ie"}
     collection.insert_one(post)
