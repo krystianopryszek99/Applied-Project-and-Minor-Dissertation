@@ -73,6 +73,13 @@ def register():
 def closeProgram():
     os._exit(0)
 
+def password():
+    if adminPass.get() == "1972":
+        messagebox.showinfo("Alert","ACCESS GRANTED!")
+    else:
+        messagebox.showerror("Alert","WRONG PASSWORD!")
+
+
 # User Interface (Main Menu) 
 
 window = tk.Tk()
@@ -145,6 +152,24 @@ RegButton.place(x=100, y=170)
 loginFrame = Frame(window, bg="#447c84")
 
 Frame(loginFrame).grid(row=1, column=0, padx=768, pady=800)
+
+# Reg Frame
+admin_Frame=Frame(loginFrame,bd=4,relief=RIDGE, bg="white")
+admin_Frame.place(x=565, y=200, width=400, height=400)
+
+label=Label(loginFrame, text="\nAdmin Panel\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label.grid(row=0, column=0, sticky="nsew")
+
+lbl_name = Label(admin_Frame,text="Pin", bg="white",fg="black",font=('Helvetica', 20, ' bold '))
+lbl_name.place(x=50, y=40)
+
+adminPass = tk.StringVar()
+txt_name=Entry(admin_Frame, show="*", textvariable=adminPass, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+txt_name.place(x=50, y=80)
+
+# Buttons 
+loginButton = tk.Button(admin_Frame, text="Log in", command=password ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+loginButton.place(x=90, y=270)
 
 BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
