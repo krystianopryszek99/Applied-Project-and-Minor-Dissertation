@@ -53,9 +53,11 @@ def register():
                 # saves users name as a image 
                 img_name = "images/" + name.get() + ".jpg".format(img_counter)
                 cv2.imwrite(img_name, frame)
-                # store user to database
+                # store user to db
                 database.store_retrieve(name)
+                # stores email address to the db
                 database.store_email(name)
+                # sends email 
                 emailNotification.sendNotification(name)
                 # Delete the image of the images folder after it has been stored on the database.
                 path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
@@ -81,6 +83,7 @@ window.title("Clocking Management System")
 def show_mainMenuFrame():
     regMenuFrame.grid_forget()
     healthMenuFrame.grid_forget()
+    loginFrame.grid_forget()
     mainMenuFrame.grid()
 
 def show_regMenu():
@@ -92,6 +95,10 @@ def show_healthCheckMenu():
     regMenuFrame.grid_forget()
     healthMenuFrame.grid()
 
+def show_login():
+    mainMenuFrame.grid_forget()
+    loginFrame.grid()
+
 # Main Menu Frame
 
 mainMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
@@ -99,6 +106,9 @@ mainMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
 time_label=Label(mainMenuFrame, font=("Helvetica", 30, "bold"),bg="grey", fg="white")
 time_label.grid(row=0, column=0, sticky="nsew")
 time()  
+
+adminButton = tk.Button(mainMenuFrame, text="Admin", command=show_login, fg="white"  ,bg="blue"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+adminButton.place(x=1400, y=30)
 
 Frame(mainMenuFrame).grid(row=1, column=0, padx=800, pady=800)
 
@@ -130,6 +140,15 @@ ExitButton.place(x=100, y=230)
 RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 RegButton.place(x=100, y=170)
 
+# Log in frame (Admin)
+
+loginFrame = Frame(window, bg="#447c84")
+
+Frame(loginFrame).grid(row=1, column=0, padx=768, pady=800)
+
+BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
+
 # Registration Menu Frame
 
 regMenuFrame = Frame(window, bg="#447c84")
@@ -150,14 +169,6 @@ lbl_name.place(x=50, y=40)
 name = tk.StringVar()
 txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=50, y=70)
-
-#lbl_email = Label(Reg_Frame, text="Email *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
-#lbl_email.place(x=50, y=110)
-
-# Stores the email when registering 
-#email_var = tk.StringVar()
-#txt_email=Entry(Reg_Frame,textvariable=email_var, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
-#txt_email.place(x=50, y=140)
 
 # Buttons 
 RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
