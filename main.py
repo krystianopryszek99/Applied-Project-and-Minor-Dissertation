@@ -76,6 +76,7 @@ def closeProgram():
 def password():
     if adminPass.get() == "1972":
         messagebox.showinfo("Alert","ACCESS GRANTED!")
+        show_adminPanel()
     else:
         messagebox.showerror("Alert","WRONG PASSWORD!")
 
@@ -91,6 +92,7 @@ def show_mainMenuFrame():
     regMenuFrame.grid_forget()
     healthMenuFrame.grid_forget()
     loginFrame.grid_forget()
+    adminsFrame.grid_forget()
     mainMenuFrame.grid()
 
 def show_regMenu():
@@ -105,6 +107,11 @@ def show_healthCheckMenu():
 def show_login():
     mainMenuFrame.grid_forget()
     loginFrame.grid()
+
+def show_adminPanel():
+    loginFrame.grid_forget()
+    mainMenuFrame.grid_forget()
+    adminsFrame.grid()
 
 # Main Menu Frame
 
@@ -173,6 +180,43 @@ loginButton.place(x=90, y=270)
 
 BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
+
+# Admin Panel Frame
+
+adminsFrame = Frame(window, bg="#447c84")
+
+Frame(adminsFrame).grid(row=1, column=0, padx=768, pady=800)
+
+label=Label(adminsFrame, text="\nAdmin Panel\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label.grid(row=0, column=0, sticky="nsew")
+
+student_label = Label(adminsFrame,text = "To view all students\n click 'Students'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
+student_label.place(x=75, y=300)
+
+logs_label = Label(adminsFrame,text = "To view all logs\n click 'Logs'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
+logs_label.place(x=435, y=300)
+
+detail_label = Label(adminsFrame,text = "To view all student details\n click 'Details'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
+detail_label.place(x=755, y=300)
+
+health_check_label = Label(adminsFrame,text = "To view health check form\n click 'Health Check'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
+health_check_label.place(x=1155, y=300)
+
+# Buttons 
+StudnetsButton = tk.Button(adminsFrame, text="Students", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+StudnetsButton.place(x=110, y=380)
+
+LogsButton = tk.Button(adminsFrame, text="Logs", fg="white" ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+LogsButton.place(x=470, y=380)
+
+detailsButton = tk.Button(adminsFrame, text="Details", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+detailsButton.place(x=830, y=380)
+
+healthCheckButton = tk.Button(adminsFrame, text="Health Check", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+healthCheckButton.place(x=1190, y=380)
+
+LoginBackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+LoginBackButton.place(x=10, y=800)
 
 # Registration Menu Frame
 
