@@ -12,6 +12,28 @@ import emailNotification
 import os
 import database
 import csv
+from pymongo import MongoClient
+
+def all_students(n):
+    client = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    mydb = client["Registration"]
+    mycol = mydb["fs.files"]
+
+    lst = [['Students']]
+
+    lst.clear()
+    lst.append(["Students"])
+    cursor = mycol.find({})
+    for text_fromDB in cursor:
+        filename = str(text_fromDB['filename'].encode('utf-8').decode("utf-8"))
+        lst.append([filename])
+
+    for i in range(len(lst)):
+        for j in range(len(lst[0])):
+            mgrid = tk.Entry(AllStudents_Frame, width=300, font=('Helvetica', 10, ' bold '))
+            mgrid.insert(tk.END,lst[i][j])
+            mgrid._values = mgrid.get(), i
+            mgrid.grid(row=i+10, column=j+10)
 
 def time():
     # Time and date
@@ -111,7 +133,14 @@ def show_login():
 def show_adminPanel():
     loginFrame.grid_forget()
     mainMenuFrame.grid_forget()
+    allStudentsFrame.grid_forget()
     adminsFrame.grid()
+
+def show_allStudentsPanel():
+    loginFrame.grid_forget()
+    mainMenuFrame.grid_forget()
+    adminsFrame.grid_forget()
+    allStudentsFrame.grid()
 
 # Main Menu Frame
 
@@ -203,8 +232,8 @@ health_check_label = Label(adminsFrame,text = "To view health check form\n click
 health_check_label.place(x=1155, y=300)
 
 # Buttons 
-StudnetsButton = tk.Button(adminsFrame, text="Students", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-StudnetsButton.place(x=110, y=380)
+AllStudentsButton = tk.Button(adminsFrame, command=show_allStudentsPanel, text="Students", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+AllStudentsButton.place(x=110, y=380)
 
 LogsButton = tk.Button(adminsFrame, text="Logs", fg="white" ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 LogsButton.place(x=470, y=380)
@@ -215,8 +244,22 @@ detailsButton.place(x=830, y=380)
 healthCheckButton = tk.Button(adminsFrame, text="Health Check", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 healthCheckButton.place(x=1190, y=380)
 
-LoginBackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-LoginBackButton.place(x=10, y=800)
+BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
+
+# All Students Panel
+
+allStudentsFrame = Frame(window, bg="#447c84")
+
+Frame(allStudentsFrame).grid(row=0, column=0, padx=1500, pady=500)
+
+AllStudents_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE)
+AllStudents_Frame.place(x=350, y=20, width=800, height=800)
+
+all_students(0)
+
+BackButton = tk.Button(allStudentsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
 
 # Registration Menu Frame
 
