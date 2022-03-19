@@ -77,7 +77,7 @@ def store_email(name):
     post = {"Email": name.get() + "@gmit.ie"}
     collection.insert_one(post)
 
-def all_students(n, AllStudents_Frame):
+def all_students(n, StudentsLeft_Frame):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Registration"]
     collection = db["fs.files"]
@@ -93,30 +93,51 @@ def all_students(n, AllStudents_Frame):
 
     for i in range(len(list)):
         for j in range(len(list[0])):
-            tbl_txt = tk.Entry(AllStudents_Frame, width=300, font=('Helvetica', 10, ' bold '))
+            tbl_txt = tk.Entry(StudentsLeft_Frame, width=300, font=('Helvetica', 10, ' bold '))
             tbl_txt.insert(tk.END,list[i][j])
             tbl_txt._values = tbl_txt.get(), i
             tbl_txt.grid(row=i+10, column=j+10)
 
 def student_logs(n, StudentLogs_Frame):
-    client = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    mydb = client["Students"]
-    mycol = mydb["logs"]
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["logs"]
 
-    lst = [['Name', 'Time', 'Date']]
+    list = [['Name', 'Time', 'Date']]
 
-    lst.clear()
-    lst.append(["Name", "Time", "Date"])
-    cursor = mycol.find({})
+    list.clear()
+    list.append(["Name", "Time", "Date"])
+    cursor = collection.find({})
     for text_fromDB in cursor:
         name = str(text_fromDB['Name'].encode('utf-8').decode("utf-8"))
         time = str(text_fromDB['Time'].encode('utf-8').decode("utf-8"))
         date = str(text_fromDB['Date'].encode('utf-8').decode("utf-8"))
-        lst.append([name, time, date])
+        list.append([name, time, date])
 
-    for i in range(len(lst)):
-        for j in range(len(lst[0])):
-            mgrid = tk.Entry(StudentLogs_Frame, width=40, font=('Helvetica', 10, ' bold '))
-            mgrid.insert(tk.END,lst[i][j])
-            mgrid._values = mgrid.get(), i
-            mgrid.grid(row=i+10, column=j+10)
+    for i in range(len(list)):
+        for j in range(len(list[0])):
+            tbl_txt = tk.Entry(StudentLogs_Frame, width=40, font=('Helvetica', 10, ' bold '))
+            tbl_txt.insert(tk.END,list[i][j])
+            tbl_txt._values = tbl_txt.get(), i
+            tbl_txt.grid(row=i+10, column=j+10)
+
+def student_details(n, StudentsRight_Frame):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["student_details"]
+
+    list = [['Students Email']]
+
+    list.clear()
+    list.append(["Students Email"])
+    cursor = collection.find({})
+    for text_fromDB in cursor:
+        email = str(text_fromDB['Email'].encode('utf-8').decode("utf-8"))
+        list.append([email])
+
+    for i in range(len(list)):
+        for j in range(len(list[0])):
+            tbl_txt = tk.Entry(StudentsRight_Frame, width=300, font=('Helvetica', 10, ' bold '))
+            tbl_txt.insert(tk.END,list[i][j])
+            tbl_txt._values = tbl_txt.get(), i
+            tbl_txt.grid(row=i+10, column=j+10)

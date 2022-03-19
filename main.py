@@ -178,7 +178,7 @@ Frame(loginFrame).grid(row=1, column=0, padx=768, pady=800)
 admin_Frame=Frame(loginFrame,bd=4,relief=RIDGE, bg="white")
 admin_Frame.place(x=565, y=200, width=400, height=400)
 
-label=Label(loginFrame, text="\nAdmin Panel\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label=Label(loginFrame, text="\nAdmin Dashboard\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
 label.grid(row=0, column=0, sticky="nsew")
 
 lbl_name = Label(admin_Frame,text="Pin", bg="white",fg="black",font=('Helvetica', 20, ' bold '))
@@ -201,33 +201,27 @@ adminsFrame = Frame(window, bg="#447c84")
 
 Frame(adminsFrame).grid(row=1, column=0, padx=768, pady=800)
 
-label=Label(adminsFrame, text="\nAdmin Panel\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label=Label(adminsFrame, text="\nAdmin Dashboard\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
 label.grid(row=0, column=0, sticky="nsew")
 
 student_label = Label(adminsFrame,text = "To view all students\n click 'Students'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-student_label.place(x=75, y=300)
+student_label.place(x=175, y=300)
 
 logs_label = Label(adminsFrame,text = "To view all logs\n click 'Logs'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-logs_label.place(x=435, y=300)
-
-detail_label = Label(adminsFrame,text = "To view all student details\n click 'Details'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-detail_label.place(x=755, y=300)
+logs_label.place(x=640, y=300)
 
 health_check_label = Label(adminsFrame,text = "To view health check form\n click 'Health Check'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-health_check_label.place(x=1155, y=300)
+health_check_label.place(x=1020, y=300)
 
 # Buttons 
 AllStudentsButton = tk.Button(adminsFrame, text="Students", command=show_allStudentsPanel, fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-AllStudentsButton.place(x=110, y=380)
+AllStudentsButton.place(x=200, y=380)
 
 LogsButton = tk.Button(adminsFrame, text="Logs", command=show_studentLogsFrame, fg="white" ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-LogsButton.place(x=470, y=380)
-
-detailsButton = tk.Button(adminsFrame, text="Details", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-detailsButton.place(x=830, y=380)
+LogsButton.place(x=650, y=380)
 
 healthCheckButton = tk.Button(adminsFrame, text="Health Check", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-healthCheckButton.place(x=1190, y=380)
+healthCheckButton.place(x=1100, y=380)
 
 BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
@@ -238,10 +232,18 @@ allStudentsFrame = Frame(window, bg="#447c84")
 
 Frame(allStudentsFrame).grid(row=0, column=0, padx=1500, pady=500)
 
-AllStudents_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE)
-AllStudents_Frame.place(x=350, y=20, width=800, height=800)
+# Students Left Frame
+StudentsLeft_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
+StudentsLeft_Frame.place(x=250, y=25, width=520, height=800)
 
-database.all_students(0, AllStudents_Frame)
+# Students Right Frame
+StudentsRight_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
+StudentsRight_Frame.place(x=760, y=25, width=520, height=800)
+
+# Display table with db data for:
+# all registred students and their email address.
+database.all_students(0, StudentsLeft_Frame)
+database.student_details(0, StudentsRight_Frame)
 
 BackButton = tk.Button(allStudentsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
