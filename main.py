@@ -167,10 +167,10 @@ newUsers_title.place(x=180, y=10)
 
 # Buttons 
 clockInButton = tk.Button(Left_Frame, text="Check In", command=show_healthCheckMenu, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
-clockInButton.place(x=100, y=100)
+clockInButton.place(x=100, y=170)
 
-ExitButton = tk.Button(Left_Frame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
-ExitButton.place(x=100, y=230)
+ExitButton = tk.Button(mainMenuFrame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ExitButton.place(x=10, y=800)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 RegButton.place(x=100, y=170)
