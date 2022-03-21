@@ -141,3 +141,26 @@ def student_details(n, StudentsRight_Frame):
             tbl_txt.insert(tk.END,list[i][j])
             tbl_txt._values = tbl_txt.get(), i
             tbl_txt.grid(row=i+10, column=j+10)
+
+def health_check(n, HealthCheck_Frame):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+
+    list = [['Student Mobile Number', 'College Attending', 'Confirmation']]
+
+    list.clear()
+    list.append(["Student Mobile Number", "College Attending", "Confirmation"])
+    cursor = collection.find({})
+    for text_fromDB in cursor:
+        mobile = str(text_fromDB['Mobile Number'].encode('utf-8').decode("utf-8"))
+        college = str(text_fromDB['College'].encode('utf-8').decode("utf-8"))
+        conf = str(text_fromDB['Confirmation'].encode('utf-8').decode("utf-8"))
+        list.append([mobile, college, conf])
+
+    for i in range(len(list)):
+        for j in range(len(list[0])):
+            tbl_txt = tk.Entry(HealthCheck_Frame, width=40, font=('Helvetica', 10, ' bold '))
+            tbl_txt.insert(tk.END,list[i][j])
+            tbl_txt._values = tbl_txt.get(), i
+            tbl_txt.grid(row=i+10, column=j+10)

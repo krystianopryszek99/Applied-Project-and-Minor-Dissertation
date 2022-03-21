@@ -113,6 +113,7 @@ def show_adminPanel():
     mainMenuFrame.grid_forget()
     allStudentsFrame.grid_forget()
     studentLogsFrame.grid_forget()
+    healthCheckFrame.grid_forget()
     adminsFrame.grid()
 
 def show_allStudentsPanel():
@@ -126,6 +127,12 @@ def show_studentLogsFrame():
     mainMenuFrame.grid_forget()
     adminsFrame.grid_forget()
     studentLogsFrame.grid()
+
+def show_healthCheckFrame():
+    loginFrame.grid_forget()
+    mainMenuFrame.grid_forget()
+    adminsFrame.grid_forget()
+    healthCheckFrame.grid()
 
 # Main Menu Frame
 
@@ -220,7 +227,7 @@ AllStudentsButton.place(x=200, y=380)
 LogsButton = tk.Button(adminsFrame, text="Logs", command=show_studentLogsFrame, fg="white" ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 LogsButton.place(x=650, y=380)
 
-healthCheckButton = tk.Button(adminsFrame, text="Health Check", fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+healthCheckButton = tk.Button(adminsFrame, text="Health Check", command=show_healthCheckFrame, fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 healthCheckButton.place(x=1100, y=380)
 
 BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
@@ -260,6 +267,21 @@ StudentLogs_Frame.place(x=350, y=20, width=800, height=800)
 database.student_logs(0, StudentLogs_Frame)
 
 BackButton = tk.Button(studentLogsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=800)
+
+# health check Frame
+
+healthCheckFrame = Frame(window, bg="#447c84")
+
+Frame(healthCheckFrame).grid(row=0, column=0, padx=1000, pady=500)
+
+# HealthCheck Frame
+HealthCheck_Frame=Frame(healthCheckFrame,bd=4,relief=RIDGE)
+HealthCheck_Frame.place(x=350, y=20, width=800, height=800)
+
+database.health_check(0, HealthCheck_Frame)
+
+BackButton = tk.Button(healthCheckFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
 
 # Registration Menu Frame
