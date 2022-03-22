@@ -12,6 +12,24 @@ import emailNotification
 import os
 import database
 import csv
+from pymongo import MongoClient
+
+def total_students():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["fs.files"]
+
+    # number of documents in the collection
+    totalStudents = collection.count_documents({})
+
+    mobile_label = Label(TotalStudents_Frame,text = "Total registered ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+    mobile_label.place(x=120, y=10)
+
+    mobile_label = Label(TotalStudents_Frame, text=totalStudents, fg="black", bg="lightgrey", font=('Helvetica', 20))
+    mobile_label.place(x=175, y=70)
+
+    ViewButton = tk.Button(TotalStudents_Frame, text="View", command=show_allStudentsPanel, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+    ViewButton.place(x=0, y=150)
 
 def time():
     # Time and date
@@ -211,25 +229,24 @@ Frame(adminsFrame).grid(row=1, column=0, padx=768, pady=800)
 label=Label(adminsFrame, text="\nAdmin Dashboard\n", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
 label.grid(row=0, column=0, sticky="nsew")
 
-student_label = Label(adminsFrame,text = "To view all students\n click 'Students'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-student_label.place(x=175, y=300)
+TotalStudents_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+TotalStudents_Frame.place(x=115, y=200, width=400, height=200)
 
-logs_label = Label(adminsFrame,text = "To view all logs\n click 'Logs'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-logs_label.place(x=640, y=300)
+total_students()
 
-health_check_label = Label(adminsFrame,text = "To view health check form\n click 'Health Check'", bg="#447c84", fg="black",font=('Helvetica', 20, ' bold '))
-health_check_label.place(x=1020, y=300)
+TotalLogs_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+TotalLogs_Frame.place(x=570, y=200, width=400, height=200)
+
+TotalForms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+TotalForms_Frame.place(x=1025, y=200, width=400, height=200)
+
+With_No_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+With_No_Symptoms_Frame.place(x=315, y=500, width=400, height=200)
+
+With_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+With_Symptoms_Frame.place(x=815, y=500, width=400, height=200)
 
 # Buttons 
-AllStudentsButton = tk.Button(adminsFrame, text="Students", command=show_allStudentsPanel, fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-AllStudentsButton.place(x=200, y=380)
-
-LogsButton = tk.Button(adminsFrame, text="Logs", command=show_studentLogsFrame, fg="white" ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-LogsButton.place(x=650, y=380)
-
-healthCheckButton = tk.Button(adminsFrame, text="Health Check", command=show_healthCheckFrame, fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
-healthCheckButton.place(x=1100, y=380)
-
 BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
 

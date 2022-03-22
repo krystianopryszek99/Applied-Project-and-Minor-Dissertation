@@ -93,7 +93,7 @@ def all_students(n, StudentsLeft_Frame):
 
     for i in range(len(list)):
         for j in range(len(list[0])):
-            tbl_txt = tk.Entry(StudentsLeft_Frame, width=300, font=('Helvetica', 10, ' bold '))
+            tbl_txt = tk.Entry(StudentsLeft_Frame, width=300, font=('Helvetica', 10))
             tbl_txt.insert(tk.END,list[i][j])
             tbl_txt._values = tbl_txt.get(), i
             tbl_txt.grid(row=i+10, column=j+10)
@@ -137,7 +137,7 @@ def student_details(n, StudentsRight_Frame):
 
     for i in range(len(list)):
         for j in range(len(list[0])):
-            tbl_txt = tk.Entry(StudentsRight_Frame, width=300, font=('Helvetica', 10, ' bold '))
+            tbl_txt = tk.Entry(StudentsRight_Frame, width=300, font=('Helvetica', 10))
             tbl_txt.insert(tk.END,list[i][j])
             tbl_txt._values = tbl_txt.get(), i
             tbl_txt.grid(row=i+10, column=j+10)
