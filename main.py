@@ -22,14 +22,31 @@ def total_students():
     # number of documents in the collection
     totalStudents = collection.count_documents({})
 
-    mobile_label = Label(TotalStudents_Frame,text = "Total registered ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    mobile_label.place(x=120, y=10)
+    totalStudents_label = Label(TotalStudents_Frame,text = "Total registered ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+    totalStudents_label.place(x=120, y=10)
 
-    mobile_label = Label(TotalStudents_Frame, text=totalStudents, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    mobile_label.place(x=175, y=70)
+    totalStudentsDocCount_label = Label(TotalStudents_Frame, text=totalStudents, fg="black", bg="lightgrey", font=('Helvetica', 20))
+    totalStudentsDocCount_label.place(x=175, y=70)
 
     ViewButton = tk.Button(TotalStudents_Frame, text="View", command=show_allStudentsPanel, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
     ViewButton.place(x=0, y=150)
+
+def total_checkin():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["logs"]
+
+    # number of documents in the collection
+    totalCheckIns = collection.count_documents({})
+
+    totalCheckedIn_label = Label(TotalLogs_Frame,text = "Total checked in ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+    totalCheckedIn_label.place(x=120, y=10)
+
+    totalCheckedInDocCount_label = Label(TotalLogs_Frame,text=totalCheckIns, fg="black", bg="lightgrey", font=('Helvetica', 20))
+    totalCheckedInDocCount_label.place(x=175, y=70)
+
+    Button = tk.Button(TotalLogs_Frame, text="View", command=show_studentLogsFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+    Button.place(x=0, y=150)
 
 def time():
     # Time and date
@@ -236,6 +253,8 @@ total_students()
 
 TotalLogs_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalLogs_Frame.place(x=570, y=200, width=400, height=200)
+
+total_checkin()
 
 TotalForms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalForms_Frame.place(x=1025, y=200, width=400, height=200)
