@@ -48,6 +48,23 @@ def total_checkin():
     Button = tk.Button(TotalLogs_Frame, text="View", command=show_studentLogsFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
     Button.place(x=0, y=150)
 
+def total_health_check():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+ 
+    # number of documents in the collection
+    totalForms = collection.count_documents({})
+
+    totalForms_label = Label(TotalForms_Frame,text = "Total completed forms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+    totalForms_label.place(x=100, y=10)
+
+    totalFormsDocCount_label = Label(TotalForms_Frame,text = totalForms, fg="black", bg="lightgrey", font=('Helvetica', 20))
+    totalFormsDocCount_label.place(x=175, y=70)
+
+    Button = tk.Button(TotalForms_Frame, text="View", command=show_healthCheckFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+    Button.place(x=0, y=150)
+
 def time():
     # Time and date
     string = strftime('%H:%M:%S %p \n %d/%m/%Y')
@@ -258,6 +275,8 @@ total_checkin()
 
 TotalForms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalForms_Frame.place(x=1025, y=200, width=400, height=200)
+
+total_health_check()
 
 With_No_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 With_No_Symptoms_Frame.place(x=315, y=500, width=400, height=200)

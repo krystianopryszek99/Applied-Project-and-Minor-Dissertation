@@ -160,7 +160,7 @@ def health_check(n, HealthCheck_Frame):
 
     for i in range(len(list)):
         for j in range(len(list[0])):
-            tbl_txt = tk.Entry(HealthCheck_Frame, width=40, font=('Helvetica', 10, ' bold '))
+            tbl_txt = tk.Entry(HealthCheck_Frame, width=40, font=('Helvetica', 10))
             tbl_txt.insert(tk.END,list[i][j])
             tbl_txt._values = tbl_txt.get(), i
             tbl_txt.grid(row=i+10, column=j+10)
