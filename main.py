@@ -79,6 +79,20 @@ def total_with_no_symptoms():
     totalNoSymptomsDocCount_label = Label(With_No_Symptoms_Frame,text = totalNoSymptoms, fg="black", bg="lightgrey", font=('Helvetica', 20))
     totalNoSymptomsDocCount_label.place(x=175, y=70)
 
+def total_with_symptoms():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+
+    # number of documents in the collection
+    totalWithSymptoms = collection.count_documents({'Confirmation': "No"})
+
+    totalWithSymptoms_label = Label(With_Symptoms_Frame,text = "Total with symptoms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+    totalWithSymptoms_label.place(x=100, y=10)
+
+    totalWithSymptomsDocCount_label = Label(With_Symptoms_Frame,text = totalWithSymptoms, fg="black", bg="lightgrey", font=('Helvetica', 20))
+    totalWithSymptomsDocCount_label.place(x=175, y=70)
+
 def time():
     # Time and date
     string = strftime('%H:%M:%S %p \n %d/%m/%Y')
@@ -299,6 +313,8 @@ total_with_no_symptoms()
 
 With_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 With_Symptoms_Frame.place(x=815, y=500, width=400, height=200)
+
+total_with_symptoms()
 
 # Buttons 
 BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
