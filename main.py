@@ -407,7 +407,7 @@ Frame(healthMenuFrame).grid(row=0, column=0, padx=1000, pady=500)
 
 # HealthCheck Frame
 HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE)
-HealthCheck_Frame.place(x=350, y=200, width=800, height=480)
+HealthCheck_Frame.place(x=350, y=200, width=800, height=520)
 
 heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
 heading_label.pack()
@@ -418,11 +418,11 @@ mobile_label.place(x=0, y=90)
 college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list: ",fg="black",font=('Helvetica', 12, ' bold '))
 college_label.place(x=0, y=120)
 
-info_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE, AND I AM ATTENDING CAMPUS FOR\n WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
+info_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE\n OR Click NO to confirm YOU HAVE SYMPTOMS,\n AND I AM ATTENDING CAMPUS FOR WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
 info_label.place(x=10, y=250)
 
 confirm_label = Label(HealthCheck_Frame,text = "Click Here: ",fg="black",font=('Helvetica', 10, ' bold '))
-confirm_label.place(x=120, y=430)
+confirm_label.place(x=120, y=470)
 
 # Mobile entry box
 mobile_var = tk.StringVar()
@@ -456,7 +456,10 @@ radiobtn7.place(x=450, y=210)
 # Confirmation
 confirmation = tk.StringVar()
 radiobtn8 = ttk.Radiobutton(HealthCheck_Frame, text = 'YES', value='Yes', variable = confirmation)
-radiobtn8.place(x=200, y=430)
+radiobtn8.place(x=200, y=470)
+
+radiobtn9 = ttk.Radiobutton(HealthCheck_Frame, text = 'NO', value='No', variable = confirmation)
+radiobtn9.place(x=250, y=470)
 
 # Buttons
 BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
@@ -494,7 +497,7 @@ def action():
 
 # submit form button
 submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('Helvetica', 12))  
-submit_button.place(x=350, y=430)
+submit_button.place(x=350, y=470)
 
 mainMenuFrame.grid()
 
