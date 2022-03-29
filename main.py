@@ -466,34 +466,64 @@ BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame 
 BackButton.place(x=10, y=800)
 
 def action():
-    mobile = mobile_var.get()
-    college = college_attend.get()
-    confirm = confirmation.get()
+    if confirmation.get() == "No":  
+        messagebox.showerror("Alert","You have symptoms, you are not allowed to check in!")
+        mobile = mobile_var.get()
+        college = college_attend.get()
+        confirm = confirmation.get()
 
-    # csv header
-    fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
+        # csv header
+        fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
 
-    # csv data
-    rows = [
-        {'Mobile Number' : mobile,
-        'College Attending' : college,
-        'Confirmation' : confirm}
-    ]
+        # csv data
+        rows = [
+            {'Mobile Number' : mobile,
+            'College Attending' : college,
+            'Confirmation' : confirm}
+        ]
 
-    # write to csv file 
-    with open('records.csv', 'a', newline = '') as f:
-        print("Saving records...")
-        # open a file for write only
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        # check if size of file is 0
-        if os.stat('records.csv').st_size == 0:        
-            # write the header
-            writer.writeheader()
-        # write a row to the csv file
-        writer.writerows(rows)
-    
-    database.store_form(mobile_var, college_attend, confirmation)
-    facialRecognition()
+        # write to csv file 
+        with open('records.csv', 'a', newline = '') as f:
+            print("Saving records...")
+            # open a file for write only
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            # check if size of file is 0
+            if os.stat('records.csv').st_size == 0:        
+                # write the header
+                writer.writeheader()
+            # write a row to the csv file
+            writer.writerows(rows)
+        
+        show_mainMenuFrame()
+    else:
+        mobile = mobile_var.get()
+        college = college_attend.get()
+        confirm = confirmation.get()
+
+        # csv header
+        fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
+
+        # csv data
+        rows = [
+            {'Mobile Number' : mobile,
+            'College Attending' : college,
+            'Confirmation' : confirm}
+        ]
+
+        # write to csv file 
+        with open('records.csv', 'a', newline = '') as f:
+            print("Saving records...")
+            # open a file for write only
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            # check if size of file is 0
+            if os.stat('records.csv').st_size == 0:        
+                # write the header
+                writer.writeheader()
+            # write a row to the csv file
+            writer.writerows(rows)
+        
+        database.store_form(mobile_var, college_attend, confirmation)
+        facialRecognition()
 
 # submit form button
 submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('Helvetica', 12))  
