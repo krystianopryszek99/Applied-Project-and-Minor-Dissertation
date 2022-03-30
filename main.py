@@ -412,22 +412,22 @@ HealthCheck_Frame.place(x=350, y=200, width=800, height=520)
 heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
 heading_label.pack()
 
-mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: ",fg="black",font=('Helvetica', 12, ' bold '))
+mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: *",fg="black",font=('Helvetica', 12, ' bold '))
 mobile_label.place(x=0, y=90)
 
-college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list: ",fg="black",font=('Helvetica', 12, ' bold '))
+college_label = Label(HealthCheck_Frame,text = "Choose the college your attending, from the list: *",fg="black",font=('Helvetica', 12, ' bold '))
 college_label.place(x=0, y=120)
 
 info_label = Label(HealthCheck_Frame,text = "if you have any symptoms of COVID-19 self-isolate (stay in your room) - Email Covidofficer@gmit.ie.\n The most common symptoms of COVID-19 are:\n •fever (high temperature - 38 degrees Celsius or above) - including having chills\n •dry cough\n •fatigue (tiredness)\n Confirming: • I am not awaiting results of a COVID-19 test.\n • I have not been diagnosed with, confirmed or suspected of COVID-19 in the past 14 days.\n Click YES to confirm I AM SYMPTOM FREE\n OR Click NO to confirm YOU HAVE SYMPTOMS,\n AND I AM ATTENDING CAMPUS FOR WORK /STUDY/VISIT TODAY\n ",fg="black",font=('Helvetica', 12, ' bold '))
 info_label.place(x=10, y=250)
 
-confirm_label = Label(HealthCheck_Frame,text = "Click Here: ",fg="black",font=('Helvetica', 10, ' bold '))
+confirm_label = Label(HealthCheck_Frame,text = "Click Here: *",fg="black",font=('Helvetica', 10, ' bold '))
 confirm_label.place(x=120, y=470)
 
 # Mobile entry box
 mobile_var = tk.StringVar()
 mobile_entrybox = Entry(HealthCheck_Frame, width = 30, textvariable = mobile_var)
-mobile_entrybox.place(x=130, y=90)
+mobile_entrybox.place(x=140, y=90)
 mobile_entrybox.focus()
 
 # Radio button
@@ -456,7 +456,7 @@ radiobtn7.place(x=450, y=210)
 # Confirmation
 confirmation = tk.StringVar()
 radiobtn8 = ttk.Radiobutton(HealthCheck_Frame, text = 'YES', value='Yes', variable = confirmation)
-radiobtn8.place(x=200, y=470)
+radiobtn8.place(x=210, y=470)
 
 radiobtn9 = ttk.Radiobutton(HealthCheck_Frame, text = 'NO', value='No', variable = confirmation)
 radiobtn9.place(x=250, y=470)
@@ -466,64 +466,83 @@ BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame 
 BackButton.place(x=10, y=800)
 
 def action():
-    if confirmation.get() == "No":  
-        messagebox.showerror("Alert","You have symptoms, you are not allowed to check in!")
-        mobile = mobile_var.get()
-        college = college_attend.get()
-        confirm = confirmation.get()
-
-        # csv header
-        fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
-
-        # csv data
-        rows = [
-            {'Mobile Number' : mobile,
-            'College Attending' : college,
-            'Confirmation' : confirm}
-        ]
-
-        # write to csv file 
-        with open('records.csv', 'a', newline = '') as f:
-            print("Saving records...")
-            # open a file for write only
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            # check if size of file is 0
-            if os.stat('records.csv').st_size == 0:        
-                # write the header
-                writer.writeheader()
-            # write a row to the csv file
-            writer.writerows(rows)
-        
-        show_mainMenuFrame()
+    if len(mobile_var.get()) == 0:
+        messagebox.showerror("Alert","Please enter your phone number!")
+    elif len(college_attend.get()) == 0:
+        messagebox.showerror("Alert","Please select college!")
+    elif len(confirmation.get()) == 0:
+        messagebox.showerror("Alert","Please select your option!")
     else:
-        mobile = mobile_var.get()
-        college = college_attend.get()
-        confirm = confirmation.get()
+        # If the option selected is "No", 
+        # It will display alert and won't let anyone check in
+        # The form gets stored to the db for
+        # breakdown of all records.
+        if confirmation.get() == "No":  
+            messagebox.showerror("Alert","You have symptoms\nYou are not allowed to check in!")
+            mobile = mobile_var.get()
+            college = college_attend.get()
+            confirm = confirmation.get()
 
-        # csv header
-        fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
+            # csv header
+            fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
 
-        # csv data
-        rows = [
-            {'Mobile Number' : mobile,
-            'College Attending' : college,
-            'Confirmation' : confirm}
-        ]
+            # csv data
+            rows = [
+                {'Mobile Number' : mobile,
+                'College Attending' : college,
+                'Confirmation' : confirm}
+            ]
 
-        # write to csv file 
-        with open('records.csv', 'a', newline = '') as f:
-            print("Saving records...")
-            # open a file for write only
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            # check if size of file is 0
-            if os.stat('records.csv').st_size == 0:        
-                # write the header
-                writer.writeheader()
-            # write a row to the csv file
-            writer.writerows(rows)
-        
-        database.store_form(mobile_var, college_attend, confirmation)
-        facialRecognition()
+            # write to csv file 
+            with open('records.csv', 'a', newline = '') as f:
+                print("Saving records...")
+                # open a file for write only
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                # check if size of file is 0
+                if os.stat('records.csv').st_size == 0:        
+                    # write the header
+                    writer.writeheader()
+                # write a row to the csv file
+                writer.writerows(rows)
+            
+            # Save the completed form to the db
+            database.store_form(mobile_var, college_attend, confirmation)
+            show_mainMenuFrame()
+            
+        # If the selected option is "Yes",
+        # It will successfully check in
+        # and store it the completed form to the db.
+        else:
+            mobile = mobile_var.get()
+            college = college_attend.get()
+            confirm = confirmation.get()
+
+            # csv header
+            fieldnames = ['Mobile Number', 'College Attending', 'Confirmation']
+
+            # csv data
+            rows = [
+                {'Mobile Number' : mobile,
+                'College Attending' : college,
+                'Confirmation' : confirm}
+            ]
+
+            # write to csv file 
+            with open('records.csv', 'a', newline = '') as f:
+                print("Saving records...")
+                # open a file for write only
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                # check if size of file is 0
+                if os.stat('records.csv').st_size == 0:        
+                    # write the header
+                    writer.writeheader()
+                # write a row to the csv file
+                writer.writerows(rows)
+            
+            # Save the completed form to the db
+            database.store_form(mobile_var, college_attend, confirmation)
+            # Run the face recogniton
+            facialRecognition()
 
 # submit form button
 submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('Helvetica', 12))  
