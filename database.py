@@ -77,90 +77,111 @@ def store_email(name):
     post = {"Email": name.get() + "@gmit.ie"}
     collection.insert_one(post)
 
-def all_students(n, StudentsLeft_Frame):
+def all_students(n):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Registration"]
     collection = db["fs.files"]
 
-    list = [['Students']]
+    student_list = [['Students']]
 
-    list.clear()
-    list.append(["Students"])
+    student_list.clear()
+    student_list.append(["Students"])
     cursor = collection.find({})
     for text_fromDB in cursor:
         filename = str(text_fromDB['filename'].encode('utf-8').decode("utf-8"))
-        list.append([filename])
+        student_list.append([filename])
+    return student_list
 
-    for i in range(len(list)):
-        for j in range(len(list[0])):
-            tbl_txt = tk.Entry(StudentsLeft_Frame, width=300, font=('Helvetica', 10))
-            tbl_txt.insert(tk.END,list[i][j])
-            tbl_txt._values = tbl_txt.get(), i
-            tbl_txt.grid(row=i+10, column=j+10)
-
-def student_logs(n, StudentLogs_Frame):
+def student_logs(n):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Students"]
     collection = db["logs"]
 
-    list = [['Name', 'Time', 'Date']]
+    logs_list = [['Name', 'Time', 'Date']]
 
-    list.clear()
-    list.append(["Name", "Time", "Date"])
+    logs_list.clear()
+    logs_list.append(["Name", "Time", "Date"])
     cursor = collection.find({})
     for text_fromDB in cursor:
         name = str(text_fromDB['Name'].encode('utf-8').decode("utf-8"))
         time = str(text_fromDB['Time'].encode('utf-8').decode("utf-8"))
         date = str(text_fromDB['Date'].encode('utf-8').decode("utf-8"))
-        list.append([name, time, date])
+        logs_list.append([name, time, date])
+    return logs_list
 
-    for i in range(len(list)):
-        for j in range(len(list[0])):
-            tbl_txt = tk.Entry(StudentLogs_Frame, width=40, font=('Helvetica', 10))
-            tbl_txt.insert(tk.END,list[i][j])
-            tbl_txt._values = tbl_txt.get(), i
-            tbl_txt.grid(row=i+10, column=j+10)
-
-def student_details(n, StudentsRight_Frame):
+def student_details(n):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Registration"]
     collection = db["student_details"]
 
-    list = [['Students Email']]
+    details_list = [['Students Email']]
 
-    list.clear()
-    list.append(["Students Email"])
+    details_list.clear()
+    details_list.append(["Students Email"])
     cursor = collection.find({})
     for text_fromDB in cursor:
         email = str(text_fromDB['Email'].encode('utf-8').decode("utf-8"))
-        list.append([email])
+        details_list.append([email])
+    return details_list
 
-    for i in range(len(list)):
-        for j in range(len(list[0])):
-            tbl_txt = tk.Entry(StudentsRight_Frame, width=300, font=('Helvetica', 10))
-            tbl_txt.insert(tk.END,list[i][j])
-            tbl_txt._values = tbl_txt.get(), i
-            tbl_txt.grid(row=i+10, column=j+10)
-
-def health_check(n, HealthCheck_Frame):
+def health_check(n):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Students"]
     collection = db["health_check_form"]
 
-    list = [['Student Mobile Number', 'College Attending', 'Confirmation']]
+    form_list = [['Student Mobile Number', 'College Attending', 'Confirmation']]
 
-    list.clear()
-    list.append(["Student Mobile Number", "College Attending", "Confirmation"])
+    form_list.clear()
+    form_list.append(["Student Mobile Number", "College Attending", "Confirmation"])
     cursor = collection.find({})
     for text_fromDB in cursor:
         mobile = str(text_fromDB['Mobile Number'].encode('utf-8').decode("utf-8"))
         college = str(text_fromDB['College'].encode('utf-8').decode("utf-8"))
         conf = str(text_fromDB['Confirmation'].encode('utf-8').decode("utf-8"))
-        list.append([mobile, college, conf])
+        form_list.append([mobile, college, conf])
+    return form_list
 
-    for i in range(len(list)):
-        for j in range(len(list[0])):
-            tbl_txt = tk.Entry(HealthCheck_Frame, width=40, font=('Helvetica', 10))
-            tbl_txt.insert(tk.END,list[i][j])
-            tbl_txt._values = tbl_txt.get(), i
-            tbl_txt.grid(row=i+10, column=j+10)
+def total_students():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["fs.files"]
+
+    # number of documents in the collection
+    totalStudents = collection.count_documents({})
+    return totalStudents
+
+def total_checkin():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["logs"]
+
+    # number of documents in the collection
+    totalCheckIns = collection.count_documents({})
+    return totalCheckIns
+
+def total_health_check():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+ 
+    # number of documents in the collection
+    totalForms = collection.count_documents({})
+    return totalForms
+
+def total_with_no_symptoms():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+
+    # number of documents in the collection
+    totalNoSymptoms = collection.count_documents({'Confirmation': "Yes"})
+    return totalNoSymptoms
+
+def total_with_symptoms():
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Students"]
+    collection = db["health_check_form"]
+
+    # number of documents in the collection
+    totalWithSymptoms = collection.count_documents({'Confirmation': "No"})
+    return totalWithSymptoms

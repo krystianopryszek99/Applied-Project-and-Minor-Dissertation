@@ -12,86 +12,6 @@ import emailNotification
 import os
 import database
 import csv
-from pymongo import MongoClient
-
-def total_students():
-    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    db = cluster["Registration"]
-    collection = db["fs.files"]
-
-    # number of documents in the collection
-    totalStudents = collection.count_documents({})
-
-    totalStudents_label = Label(TotalStudents_Frame,text = "Total registered ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    totalStudents_label.place(x=120, y=10)
-
-    totalStudentsDocCount_label = Label(TotalStudents_Frame, text=totalStudents, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    totalStudentsDocCount_label.place(x=175, y=70)
-
-    ViewButton = tk.Button(TotalStudents_Frame, text="View", command=show_allStudentsPanel, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-    ViewButton.place(x=0, y=150)
-
-def total_checkin():
-    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    db = cluster["Students"]
-    collection = db["logs"]
-
-    # number of documents in the collection
-    totalCheckIns = collection.count_documents({})
-
-    totalCheckedIn_label = Label(TotalLogs_Frame,text = "Total checked in ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    totalCheckedIn_label.place(x=120, y=10)
-
-    totalCheckedInDocCount_label = Label(TotalLogs_Frame,text=totalCheckIns, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    totalCheckedInDocCount_label.place(x=175, y=70)
-
-    Button = tk.Button(TotalLogs_Frame, text="View", command=show_studentLogsFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-    Button.place(x=0, y=150)
-
-def total_health_check():
-    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    db = cluster["Students"]
-    collection = db["health_check_form"]
- 
-    # number of documents in the collection
-    totalForms = collection.count_documents({})
-
-    totalForms_label = Label(TotalForms_Frame,text = "Total completed forms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    totalForms_label.place(x=100, y=10)
-
-    totalFormsDocCount_label = Label(TotalForms_Frame,text = totalForms, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    totalFormsDocCount_label.place(x=175, y=70)
-
-    Button = tk.Button(TotalForms_Frame, text="View", command=show_healthCheckFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-    Button.place(x=0, y=150)
-
-def total_with_no_symptoms():
-    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    db = cluster["Students"]
-    collection = db["health_check_form"]
-
-    # number of documents in the collection
-    totalNoSymptoms = collection.count_documents({'Confirmation': "Yes"})
-
-    totalNoSymptoms_label = Label(With_No_Symptoms_Frame,text = "Total with no symptoms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    totalNoSymptoms_label.place(x=100, y=10)
-
-    totalNoSymptomsDocCount_label = Label(With_No_Symptoms_Frame,text = totalNoSymptoms, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    totalNoSymptomsDocCount_label.place(x=175, y=70)
-
-def total_with_symptoms():
-    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-    db = cluster["Students"]
-    collection = db["health_check_form"]
-
-    # number of documents in the collection
-    totalWithSymptoms = collection.count_documents({'Confirmation': "No"})
-
-    totalWithSymptoms_label = Label(With_Symptoms_Frame,text = "Total with symptoms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
-    totalWithSymptoms_label.place(x=100, y=10)
-
-    totalWithSymptomsDocCount_label = Label(With_Symptoms_Frame,text = totalWithSymptoms, fg="black", bg="lightgrey", font=('Helvetica', 20))
-    totalWithSymptomsDocCount_label.place(x=175, y=70)
 
 def time():
     # Time and date
@@ -294,27 +214,66 @@ label.grid(row=0, column=0, sticky="nsew")
 TotalStudents_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalStudents_Frame.place(x=115, y=200, width=400, height=200)
 
-total_students()
+totalStudents = database.total_students()
+
+totalStudents_label = Label(TotalStudents_Frame,text = "Total registered ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+totalStudents_label.place(x=120, y=10)
+
+totalStudentsDocCount_label = Label(TotalStudents_Frame, text=totalStudents, fg="black", bg="lightgrey", font=('Helvetica', 20))
+totalStudentsDocCount_label.place(x=175, y=70)
+
+ViewButton = tk.Button(TotalStudents_Frame, text="View", command=show_allStudentsPanel, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ViewButton.place(x=0, y=150)
 
 TotalLogs_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalLogs_Frame.place(x=570, y=200, width=400, height=200)
 
-total_checkin()
+totalCheckins = database.total_checkin()
+
+totalCheckedIn_label = Label(TotalLogs_Frame,text = "Total checked in ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+totalCheckedIn_label.place(x=120, y=10)
+
+totalCheckedInDocCount_label = Label(TotalLogs_Frame,text=totalCheckins, fg="black", bg="lightgrey", font=('Helvetica', 20))
+totalCheckedInDocCount_label.place(x=175, y=70)
+
+ViewButton = tk.Button(TotalLogs_Frame, text="View", command=show_studentLogsFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ViewButton.place(x=0, y=150)
 
 TotalForms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 TotalForms_Frame.place(x=1025, y=200, width=400, height=200)
 
-total_health_check()
+totalHealthCheckForms = database.total_health_check()
+
+totalForms_label = Label(TotalForms_Frame,text = "Total completed forms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+totalForms_label.place(x=100, y=10)
+
+totalFormsDocCount_label = Label(TotalForms_Frame,text = totalHealthCheckForms, fg="black", bg="lightgrey", font=('Helvetica', 20))
+totalFormsDocCount_label.place(x=175, y=70)
+
+ViewButton = tk.Button(TotalForms_Frame, text="View", command=show_healthCheckFrame, fg="white" ,bg="grey"  ,width=32 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ViewButton.place(x=0, y=150)
 
 With_No_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 With_No_Symptoms_Frame.place(x=315, y=500, width=400, height=200)
 
-total_with_no_symptoms()
+totalSymptomFree = database.total_with_no_symptoms()
+
+totalNoSymptoms_label = Label(With_No_Symptoms_Frame,text = "Total with no symptoms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+totalNoSymptoms_label.place(x=100, y=10)
+
+totalNoSymptomsDocCount_label = Label(With_No_Symptoms_Frame,text = totalSymptomFree, fg="black", bg="lightgrey", font=('Helvetica', 20))
+totalNoSymptomsDocCount_label.place(x=175, y=70)
 
 With_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
 With_Symptoms_Frame.place(x=815, y=500, width=400, height=200)
 
-total_with_symptoms()
+totalSymptoms = database.total_with_symptoms()
+
+totalWithSymptoms_label = Label(With_Symptoms_Frame,text = "Total with symptoms ", fg="black", bg="lightgrey", font=('Helvetica', 15))
+totalWithSymptoms_label.place(x=100, y=10)
+
+totalWithSymptomsDocCount_label = Label(With_Symptoms_Frame,text = totalSymptoms, fg="black", bg="lightgrey", font=('Helvetica', 20))
+totalWithSymptomsDocCount_label.place(x=175, y=70)
 
 # Buttons 
 BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
@@ -334,10 +293,23 @@ StudentsLeft_Frame.place(x=250, y=25, width=520, height=800)
 StudentsRight_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
 StudentsRight_Frame.place(x=760, y=25, width=520, height=800)
 
-# Display table with db data for:
-# all registred students and their email address.
-database.all_students(0, StudentsLeft_Frame)
-database.student_details(0, StudentsRight_Frame)
+student_list = database.all_students(0)
+
+for i in range(len(student_list)):
+    for j in range(len(student_list[0])):
+        tbl_txt = tk.Entry(StudentsLeft_Frame, width=300, font=('Helvetica', 10))
+        tbl_txt.insert(tk.END,student_list[i][j])
+        tbl_txt._values = tbl_txt.get(), i
+        tbl_txt.grid(row=i+10, column=j+10)
+
+details_list = database.student_details(0)
+
+for i in range(len(details_list)):
+    for j in range(len(details_list[0])):
+        tbl_txt = tk.Entry(StudentsRight_Frame, width=300, font=('Helvetica', 10))
+        tbl_txt.insert(tk.END,details_list[i][j])
+        tbl_txt._values = tbl_txt.get(), i
+        tbl_txt.grid(row=i+10, column=j+10)
 
 BackButton = tk.Button(allStudentsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
@@ -351,7 +323,14 @@ Frame(studentLogsFrame).grid(row=0, column=0, padx=1000, pady=500)
 StudentLogs_Frame=Frame(studentLogsFrame,bd=4,relief=RIDGE)
 StudentLogs_Frame.place(x=350, y=20, width=800, height=800)
 
-database.student_logs(0, StudentLogs_Frame)
+logs_list = database.student_logs(0)
+
+for i in range(len(logs_list)):
+    for j in range(len(logs_list[0])):
+        tbl_txt = tk.Entry(StudentLogs_Frame, width=40, font=('Helvetica', 10))
+        tbl_txt.insert(tk.END,logs_list[i][j])
+        tbl_txt._values = tbl_txt.get(), i
+        tbl_txt.grid(row=i+10, column=j+10)
 
 BackButton = tk.Button(studentLogsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
@@ -366,7 +345,14 @@ Frame(healthCheckFrame).grid(row=0, column=0, padx=1000, pady=500)
 HealthCheck_Frame=Frame(healthCheckFrame,bd=4,relief=RIDGE)
 HealthCheck_Frame.place(x=350, y=20, width=800, height=800)
 
-database.health_check(0, HealthCheck_Frame)
+form_list = database.health_check(0)
+
+for i in range(len(form_list)):
+    for j in range(len(form_list[0])):
+        tbl_txt = tk.Entry(HealthCheck_Frame, width=40, font=('Helvetica', 10))
+        tbl_txt.insert(tk.END,form_list[i][j])
+        tbl_txt._values = tbl_txt.get(), i
+        tbl_txt.grid(row=i+10, column=j+10)
 
 BackButton = tk.Button(healthCheckFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
