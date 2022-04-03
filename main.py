@@ -1,17 +1,44 @@
-# Clock In Managment System Using Face Recognition
+# Check In System Using Face Recognition
 
 from tkinter import * 
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-
 from time import strftime
-import cv2
+import os
+import csv
+from threading import Thread
+
+import database
+import capture_image
 import face
 import emailNotification
-import os
-import database
-import csv
+
+class ImageProcessing:
+    
+    def threading():
+        # Allows to run both
+        # the capturing of the image and sending an email
+        Thread(target = ImageProcessing.captureImage).start()
+        Thread(target = ImageProcessing.send_email).start()
+
+    def captureImage():
+        if len(txt_name.get()) == 0:
+            messagebox.showerror("Alert","Please enter your name")
+        else:
+            capture_image.capture(name)
+            show_mainMenuFrame()
+            # store user to db
+            database.store_retrieve(name)
+            # stores email address to the db
+            database.store_email(name)
+            # Delete the image of the images folder after it has been stored on the database.
+            path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
+            os.remove(path)
+
+    def send_email():
+        # sends email
+        emailNotification.sendNotification(name)
 
 def time():
     # Time and date
@@ -22,53 +49,6 @@ def time():
 def facialRecognition():
     show_mainMenuFrame()
     face.Face_Match()
-
-def register():
-    # if message box is empty, displays alert.
-    if len(txt_name.get()) == 0:
-        messagebox.showerror("Alert","Please enter your name")
-    else:
-        cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-
-        img_counter = 0
-
-        while True:
-            # Capture frame-by-frame
-            ret, frame = cap.read()
-            if not ret:
-                print("failed")
-                break
-            cv2.imshow("Registration", frame)
-
-            k = cv2.waitKey(1)
-            # click 'esc' to close the program
-            if k % 256 == 27:
-                print("Program closing..")
-                # closes the webcam
-                cap.release()
-                # destroys all the windows we created
-                cv2.destroyAllWindows()
-            # click 'space' to save the image
-            elif k % 256 == 32:
-                # saves users name as a image 
-                img_name = "images/" + name.get() + ".jpg".format(img_counter)
-                cv2.imwrite(img_name, frame)
-                # store user to db
-                database.store_retrieve(name)
-                # stores email address to the db
-                database.store_email(name)
-                # sends email 
-                emailNotification.sendNotification(name)
-                # Delete the image of the images folder after it has been stored on the database.
-                path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
-                os.remove(path)
-                img_counter += 1
-                # closes the webcam
-                cap.release()
-                # destroys all the windows we created
-                cv2.destroyAllWindows()
-                # After registration, redirect to main menu
-                show_mainMenuFrame()
 
 def closeProgram():
     os._exit(0)
@@ -379,7 +359,7 @@ txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=
 txt_name.place(x=50, y=70)
 
 # Buttons 
-RegButton = tk.Button(Reg_Frame, text="Submit", command=register ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+RegButton = tk.Button(Reg_Frame, text="Submit", command=ImageProcessing.threading ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 RegButton.place(x=90, y=280)
 
 BackButton = tk.Button(regMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
@@ -451,7 +431,7 @@ radiobtn9.place(x=250, y=470)
 BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
 BackButton.place(x=10, y=800)
 
-def action():
+def on_submit():
     if len(mobile_var.get()) == 0:
         messagebox.showerror("Alert","Please enter your phone number!")
     elif len(college_attend.get()) == 0:
@@ -531,7 +511,7 @@ def action():
             facialRecognition()
 
 # submit form button
-submit_button = Button(HealthCheck_Frame, text = "Submit", command = action, font=('Helvetica', 12))  
+submit_button = Button(HealthCheck_Frame, text = "Submit", command = on_submit, font=('Helvetica', 12))  
 submit_button.place(x=350, y=470)
 
 mainMenuFrame.grid()
