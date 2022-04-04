@@ -54,7 +54,7 @@ def closeProgram():
     os._exit(0)
 
 def password():
-    if adminPass.get() == "1972":
+    if adminPass.get() == "2022":
         messagebox.showinfo("Alert","ACCESS GRANTED!")
         show_adminPanel()
     else:
@@ -169,14 +169,14 @@ label=Label(loginFrame, text="\nAdmin Dashboard\n", font=("Helvetica", 30, "bold
 label.grid(row=0, column=0, sticky="nsew")
 
 lbl_name = Label(admin_Frame,text="Pin", bg="white",fg="black",font=('Helvetica', 20, ' bold '))
-lbl_name.place(x=50, y=40)
+lbl_name.place(x=80, y=40)
 
 adminPass = tk.StringVar()
 txt_name=Entry(admin_Frame, show="*", textvariable=adminPass, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
-txt_name.place(x=50, y=80)
+txt_name.place(x=80, y=80)
 
 # Buttons 
-loginButton = tk.Button(admin_Frame, text="Log in", command=password ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
+loginButton = tk.Button(admin_Frame, text="Sign In", command=password ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 loginButton.place(x=90, y=270)
 
 BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
@@ -347,16 +347,16 @@ Frame(regMenuFrame).grid(row=1, column=0, padx=768, pady=800)
 Reg_Frame=Frame(regMenuFrame,bd=4,relief=RIDGE, bg="white")
 Reg_Frame.place(x=565, y=200, width=400, height=400)
 
-label=Label(regMenuFrame, text="\nRegistration Form\n________________________", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
+label=Label(regMenuFrame, text="\nRegistration Form", font=("Helvetica", 30, "bold"),bg="#447c84", fg="black")
 label.grid(row=0, column=0, sticky="nsew")
 
 lbl_name = Label(Reg_Frame, text="Student ID *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
-lbl_name.place(x=50, y=40)
+lbl_name.place(x=80, y=40)
 
 # Stores the name when registering 
 name = tk.StringVar()
 txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
-txt_name.place(x=50, y=70)
+txt_name.place(x=80, y=70)
 
 # Buttons 
 RegButton = tk.Button(Reg_Frame, text="Submit", command=ImageProcessing.threading ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
