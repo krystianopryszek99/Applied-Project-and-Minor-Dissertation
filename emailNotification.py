@@ -24,9 +24,9 @@ def email_notification(to, subject, body):
                 <br>
                 All your information is being stored securly on the database.
                 <br><br><br>
-                <img src="https://cualliance.ie/wp-content/uploads/2020/04/logo-1-copy.png" alt="Gmit Logo" width="398" height="78">
+                <img src="https://upload.wikimedia.org/wikipedia/en/2/28/ATU-Logo-Full-RGB-Teal.png" alt="Gmit Logo" width="398" height="78">
                 <br><br>
-                GMIT - Galway-Mayo Institute Of Technology
+                ATU - Atlantic Technological University
                 <br>
                 More on Covid-19: Covidofficer@gmit.ie
                 <br>
