@@ -1,7 +1,8 @@
 import cv2
 import time
+from tkinter import messagebox
 
-def capture(name):
+def capture(ID):
     counter = int(5)
     cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 
@@ -42,8 +43,9 @@ def capture(name):
             cv2.moveWindow('Capture Image',400,200)
             cv2.waitKey(2000)
             # saves users name as a image 
-            img_name = "images/" + name.get() + ".jpg".format(img_counter)
+            img_name = "images/" + ID.get() + ".jpg".format(img_counter)
             cv2.imwrite(img_name, frame)
+            messagebox.showinfo("Info", "You have been successfully registered!")
             img_counter += 1
             # close the camera
             cap.release()

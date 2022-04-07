@@ -22,18 +22,18 @@ class Face_Match:
             self.path = 'download'
             # list of images
             self.images = []
-            # names of images
-            self.classNames = []
+            # names of images 
+            self.imgNames = []
             self.myList = os.listdir(self.path)
             # use the names of images and import them 
             for self.element in self.myList:
                 self.currentImg = cv2.imread(f'{self.path}/{self.element}')
                 # append currentImg
                 self.images.append(self.currentImg)
-                # append classNames
-                self.classNames.append(os.path.splitext(self.element)[0])
+                # append imgNames
+                self.imgNames.append(os.path.splitext(self.element)[0])
             print("List of all people found:")
-            print(self.classNames)
+            print(self.imgNames)
 
         # This function will get all faces that it knows 
         self.getEncodeList = train_image.getEncodings(self.images)
@@ -64,33 +64,33 @@ class Face_Match:
                 self.matchIndex = np.argmin(self.faceDistance)
                 
                 if self.matches[self.matchIndex]:
-                    # show name of the best match
-                    self.name = self.classNames[self.matchIndex].upper()
-                    print(self.name)
+                    # show student ID of the best match
+                    self.ID = self.imgNames[self.matchIndex].upper()
+                    print(self.ID)
                     y1,x2,y2,x1 = self.faceLocation
                     y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
                     cv2.rectangle(self.img,(x1,y1),(x2,y2),(255,0,0),2)
                     cv2.rectangle(self.img,(x1,y2-35),(x2,y2),(255,0,0),cv2.FILLED)
-                    cv2.putText(self.img,self.name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+                    cv2.putText(self.img,self.ID,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
                     # if the matches a face it will automatically close the program after 3 seconds
                     if self.matches[self.matchIndex] == True:
                         # Display the resulting frame
                         cv2.imshow('Image Capturing',self.img)
                         # check in 
-                        print(self.name + " has checked In!")
-                        checkIn(self.name)
+                        print(self.ID + " has checked In!")
+                        checkIn(self.ID)
                         # Delete the image of the downloads folder after it has been retrieved from the database.
                         # After matching known face, program waits for 5 seconds and then closes.
                         cv2.waitKey(3000)
                         self.cap.release()
                         # destroys all the windows we created
                         cv2.destroyAllWindows()
-                        checked_menu(self.name)
+                        checked_menu(self.ID)
 
 # function to clock in
-def checkIn(name):
+def checkIn(ID):
     # csv header
-    fieldnames = ['Student','Time', 'Date']
+    fieldnames = ['Student ID','Time', 'Date']
 
     #write to csv file code here
     with open('clockingLog/Logs.csv', 'a', newline = '') as f:
@@ -98,21 +98,21 @@ def checkIn(name):
         nameList = []
         # if name is not present in the list
         writer = csv.DictWriter(f, fieldnames = fieldnames)
-        if name not in nameList:
+        if ID not in nameList:
             currentTime = datetime.now()
             timeString = currentTime.strftime('%H:%M:%S')
             dateString = currentTime.strftime('%d/%m/%Y')
             if os.stat('clockingLog/Logs.csv').st_size == 0:
                 writer.writeheader()
             writer.writerow({
-                'Student' : name,
+                'Student ID' : ID,
                 'Time' : timeString,
                 'Date' : dateString,
             })
-            database.store_logs(name, timeString, dateString)
+            database.store_logs(ID, timeString, dateString)
 
 # Checked in menu - displayed when student is successfully matched.
-def checked_menu(name):
+def checked_menu(ID):
     root = Toplevel()
     root.attributes('-fullscreen',True)
     root.resizable(True,False)
@@ -134,7 +134,7 @@ def checked_menu(name):
     Right_Frame=Frame(root,bd=4,relief=RIDGE, bg="white")
     Right_Frame.place(x=760, y=200, width=520, height=425)
 
-    lbl_studentID = Label(Right_Frame, text="Student ID: " +  name, bg="white",fg="black",font=('Helvetica', 15, ' bold '))
+    lbl_studentID = Label(Right_Frame, text="Student ID: " +  ID, bg="white",fg="black",font=('Helvetica', 15, ' bold '))
     lbl_studentID.place(x=50, y=60)
 
     lbl_time = Label(Right_Frame, text="Time: " + strftime("%H:%M:%S"), bg="white",fg="black",font=('Helvetica', 15, ' bold '))
@@ -149,7 +149,7 @@ def checked_menu(name):
     lbl_info = Label(Right_Frame, text="Successfully verified.", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
     lbl_info.place(x=50, y=220)
 
-    image = Image.open("download/" + name + ".jpg")
+    image = Image.open("download/" + ID + ".jpg")
     img = ImageTk.PhotoImage(image)
 
     lbl_name3 = Label(Left_Frame, image=img)

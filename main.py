@@ -8,6 +8,7 @@ from time import strftime
 import os
 import csv
 from threading import Thread
+import webbrowser
 
 import database
 import capture_image
@@ -26,25 +27,25 @@ class ImageProcessing:
         if len(txt_name.get()) == 0:
             messagebox.showerror("Alert","Please enter your name")
         else:
-            capture_image.capture(name)
+            capture_image.capture(ID)
             show_mainMenuFrame()
             # store user to db
-            database.store_retrieve(name)
+            database.store_retrieve(ID)
             # stores email address to the db
-            database.store_email(name)
+            database.store_email(ID)
             # Delete the image of the images folder after it has been stored on the database.
-            path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + name.get() + ".jpg"
+            path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/images/" + ID.get() + ".jpg"
             os.remove(path)
 
     def send_email():
         # sends email
-        emailNotification.sendNotification(name)
+        emailNotification.sendNotification(ID)
 
-def time():
+def show_time():
     # Time and date
     string = strftime('%H:%M:%S %p \n %d/%m/%Y')
     time_label.config(text=string)
-    time_label.after(1000, time)
+    time_label.after(1000, show_time)
 
 def facialRecognition():
     show_mainMenuFrame()
@@ -60,6 +61,18 @@ def password():
     else:
         messagebox.showerror("Alert","WRONG PASSWORD!")
 
+def delete_by_id():
+    database.delete_student(deleteID)
+    database.delete_email(deleteID)
+    show_adminPanel()
+
+def delete_all():
+    messagebox.askquestion("Delete All", "Are you sure?")
+    database.delete_all()
+
+def view_chart():
+    # open html file
+    webbrowser.open('stats.html') 
 
 # User Interface (Main Menu) 
 
@@ -120,10 +133,10 @@ mainMenuFrame = Frame(window, bg="#447c84", relief=RIDGE)
 
 time_label=Label(mainMenuFrame, font=("Helvetica", 30, "bold"),bg="grey", fg="white")
 time_label.grid(row=0, column=0, sticky="nsew")
-time()  
+show_time()  
 
 adminButton = tk.Button(mainMenuFrame, text="Admin", command=show_login, fg="white"  ,bg="blue"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-adminButton.place(x=1400, y=30)
+adminButton.place(x=150, y=30)
 
 Frame(mainMenuFrame).grid(row=1, column=0, padx=800, pady=800)
 
@@ -149,8 +162,8 @@ newUsers_title.place(x=180, y=10)
 clockInButton = tk.Button(Left_Frame, text="Check In", command=show_healthCheckMenu, fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 clockInButton.place(x=100, y=170)
 
-ExitButton = tk.Button(mainMenuFrame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-ExitButton.place(x=10, y=800)
+ExitButton = tk.Button(mainMenuFrame, text="Exit", command=closeProgram, fg="white" ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ExitButton.place(x=50, y=30)
 
 RegButton = tk.Button(Right_Frame, text="Register", command=show_regMenu ,fg="white"  ,bg="blue"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 30, ' bold '))
 RegButton.place(x=100, y=170)
@@ -179,8 +192,8 @@ txt_name.place(x=80, y=80)
 loginButton = tk.Button(admin_Frame, text="Sign In", command=password ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 loginButton.place(x=90, y=270)
 
-BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(loginFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 # Admin Panel Frame
 
@@ -192,7 +205,7 @@ label=Label(adminsFrame, text="\nAdmin Dashboard\n", font=("Helvetica", 30, "bol
 label.grid(row=0, column=0, sticky="nsew")
 
 TotalStudents_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
-TotalStudents_Frame.place(x=115, y=200, width=400, height=200)
+TotalStudents_Frame.place(x=115, y=150, width=400, height=200)
 
 totalStudents = database.total_students()
 
@@ -206,7 +219,7 @@ ViewButton = tk.Button(TotalStudents_Frame, text="View", command=show_allStudent
 ViewButton.place(x=0, y=150)
 
 TotalLogs_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
-TotalLogs_Frame.place(x=570, y=200, width=400, height=200)
+TotalLogs_Frame.place(x=570, y=150, width=400, height=200)
 
 totalCheckins = database.total_checkin()
 
@@ -220,7 +233,7 @@ ViewButton = tk.Button(TotalLogs_Frame, text="View", command=show_studentLogsFra
 ViewButton.place(x=0, y=150)
 
 TotalForms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
-TotalForms_Frame.place(x=1025, y=200, width=400, height=200)
+TotalForms_Frame.place(x=1025, y=150, width=400, height=200)
 
 totalHealthCheckForms = database.total_health_check()
 
@@ -234,7 +247,7 @@ ViewButton = tk.Button(TotalForms_Frame, text="View", command=show_healthCheckFr
 ViewButton.place(x=0, y=150)
 
 With_No_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
-With_No_Symptoms_Frame.place(x=315, y=500, width=400, height=200)
+With_No_Symptoms_Frame.place(x=315, y=400, width=400, height=200)
 
 totalSymptomFree = database.total_with_no_symptoms()
 
@@ -245,7 +258,7 @@ totalNoSymptomsDocCount_label = Label(With_No_Symptoms_Frame,text = totalSymptom
 totalNoSymptomsDocCount_label.place(x=175, y=70)
 
 With_Symptoms_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
-With_Symptoms_Frame.place(x=815, y=500, width=400, height=200)
+With_Symptoms_Frame.place(x=815, y=400, width=400, height=200)
 
 totalSymptoms = database.total_with_symptoms()
 
@@ -256,8 +269,21 @@ totalWithSymptomsDocCount_label = Label(With_Symptoms_Frame,text = totalSymptoms
 totalWithSymptomsDocCount_label.place(x=175, y=70)
 
 # Buttons 
-BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+
+BackButton = tk.Button(adminsFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
+
+# Actions Frame for back button, removing all data and to view stats.
+
+Actions_Frame=Frame(adminsFrame,bd=4,relief=FLAT, bg="lightgrey")
+Actions_Frame.place(x=550, y=700, width=400, height=50)
+
+
+RemoveAllButton = tk.Button(Actions_Frame, text="Delete All", command=delete_all ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+RemoveAllButton.place(x=0, y=0)
+
+ViewChartButton = tk.Button(Actions_Frame, text="View Statistics", command=view_chart ,fg="white"  ,bg="green"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+ViewChartButton.place(x=200, y=0)
 
 # All Students Panel
 
@@ -267,11 +293,28 @@ Frame(allStudentsFrame).grid(row=0, column=0, padx=1500, pady=500)
 
 # Students Left Frame
 StudentsLeft_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
-StudentsLeft_Frame.place(x=250, y=25, width=520, height=800)
+StudentsLeft_Frame.place(x=350, y=25, width=450, height=700)
 
 # Students Right Frame
 StudentsRight_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
-StudentsRight_Frame.place(x=760, y=25, width=520, height=800)
+StudentsRight_Frame.place(x=760, y=25, width=450, height=700)
+
+AdminAction_Frame=Frame(allStudentsFrame,bd=4,relief=RIDGE, bg="white")
+AdminAction_Frame.place(x=50, y=80, width=260, height=300)
+
+adminTxt_label = Label(AdminAction_Frame,text = "Admin Action\n_____________________", fg="black", bg="white", font=('Helvetica', 15))
+adminTxt_label.place(x=10, y=10)
+
+student_label = Label(AdminAction_Frame,text = "Student ID", fg="black", bg="white", font=('Helvetica', 15))
+student_label.place(x=10, y=80)
+
+# Deleting student 
+deleteID = tk.StringVar()
+txt_name=Entry(AdminAction_Frame, textvariable=deleteID, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+txt_name.place(x=10, y=120)
+
+DeleteButton = tk.Button(AdminAction_Frame, text="Delete", command=delete_by_id ,fg="white" ,bg="red"  ,width=10 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+DeleteButton.place(x=10, y=170)
 
 student_list = database.all_students(0)
 
@@ -291,8 +334,8 @@ for i in range(len(details_list)):
         tbl_txt._values = tbl_txt.get(), i
         tbl_txt.grid(row=i+10, column=j+10)
 
-BackButton = tk.Button(allStudentsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(allStudentsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 # Student logs Panel
 
@@ -301,7 +344,7 @@ studentLogsFrame = Frame(window, bg="#447c84")
 Frame(studentLogsFrame).grid(row=0, column=0, padx=1000, pady=500)
 
 StudentLogs_Frame=Frame(studentLogsFrame,bd=4,relief=RIDGE)
-StudentLogs_Frame.place(x=350, y=20, width=800, height=800)
+StudentLogs_Frame.place(x=350, y=20, width=800, height=700)
 
 logs_list = database.student_logs(0)
 
@@ -312,8 +355,8 @@ for i in range(len(logs_list)):
         tbl_txt._values = tbl_txt.get(), i
         tbl_txt.grid(row=i+10, column=j+10)
 
-BackButton = tk.Button(studentLogsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(studentLogsFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 # health check Frame
 
@@ -323,7 +366,7 @@ Frame(healthCheckFrame).grid(row=0, column=0, padx=1000, pady=500)
 
 # HealthCheck Frame
 HealthCheck_Frame=Frame(healthCheckFrame,bd=4,relief=RIDGE)
-HealthCheck_Frame.place(x=350, y=20, width=800, height=800)
+HealthCheck_Frame.place(x=350, y=20, width=800, height=700)
 
 form_list = database.health_check(0)
 
@@ -334,8 +377,8 @@ for i in range(len(form_list)):
         tbl_txt._values = tbl_txt.get(), i
         tbl_txt.grid(row=i+10, column=j+10)
 
-BackButton = tk.Button(healthCheckFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(healthCheckFrame, text="Back", command=show_adminPanel ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 # Registration Menu Frame
 
@@ -353,17 +396,17 @@ label.grid(row=0, column=0, sticky="nsew")
 lbl_name = Label(Reg_Frame, text="Student ID *", bg="white",fg="black",font=('Helvetica', 15, ' bold '))
 lbl_name.place(x=80, y=40)
 
-# Stores the name when registering 
-name = tk.StringVar()
-txt_name=Entry(Reg_Frame,textvariable=name, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
+# Stores the student ID when registering
+ID = tk.StringVar() 
+txt_name=Entry(Reg_Frame,textvariable=ID, font=('Helvetica', 15, ' bold '),bd=5,relief=GROOVE)
 txt_name.place(x=80, y=70)
 
 # Buttons 
 RegButton = tk.Button(Reg_Frame, text="Submit", command=ImageProcessing.threading ,fg="white"  ,bg="green"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 20, ' bold '))
 RegButton.place(x=90, y=280)
 
-BackButton = tk.Button(regMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=15 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(regMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 # Health Check Form Menu
 
@@ -428,8 +471,8 @@ radiobtn9 = ttk.Radiobutton(HealthCheck_Frame, text = 'NO', value='No', variable
 radiobtn9.place(x=250, y=470)
 
 # Buttons
-BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=11 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
-BackButton.place(x=10, y=800)
+BackButton = tk.Button(healthMenuFrame, text="Back", command=show_mainMenuFrame ,fg="white"  ,bg="red"  ,width=5 ,activebackground = "white" ,font=('Helvetica', 15, ' bold '))
+BackButton.place(x=10, y=10)
 
 def on_submit():
     if len(mobile_var.get()) == 0:

@@ -21,42 +21,41 @@ def mongo_conn():
         print("Error in mongo connection", e)
 
 # Function to store/retrieve students to/from the database.
-def store_retrieve(name):
+def store_retrieve(ID):
     # Stores the image on the database
     db = mongo_conn()
     # location of the file
-    file_location = "images/" + name.get() + ".jpg"
+    file_location = "images/" + ID.get() + ".jpg"
     # open the file 
     file_data = open(file_location, "rb")
     # read the file
     data = file_data.read()
     # store it in the database
     fs = gridfs.GridFS(db)
-    fs.put(data, filename = name.get())
-    messagebox.showinfo("Info", "Upload Completed!")
+    fs.put(data, filename = ID.get())
 
     db = mongo_conn()
     # Retrieving the image from the database
-    data = db.fs.files.find_one({'filename': name.get()})
+    data = db.fs.files.find_one({'filename': ID.get()})
     # _id assigns a auto generated id in mongoDB 
     my_id = data['_id'] 
     fs = gridfs.GridFS(db)
     outputdata = fs.get(my_id).read()
     # saves the retrieved image in the downloads folder
-    download_location = "download/" + name.get() + ".jpg"
+    download_location = "download/" + ID.get() + ".jpg"
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()
     print("download completed")
 
 # Function to save student logs to the database
-def store_logs(name, timeString, dateString):
+def store_logs(ID, timeString, dateString):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Students"]
     collection = db["logs"]
 
-    # saves student name, time and date they have checked in.
-    post = {"Name": name, "Time": timeString, "Date": dateString}
+    # saves student ID, time and date they have checked in.
+    post = {"Student ID": ID, "Time": timeString, "Date": dateString}
     collection.insert_one(post)
 
 # Function to save health check form details
@@ -69,13 +68,55 @@ def store_form(mobile_var, college_attend, confirmation):
     post = {"Mobile Number": mobile_var.get(), "College": college_attend.get(), "Confirmation": confirmation.get()}
     collection.insert_one(post)
 
-def store_email(name):
+def store_email(ID):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = cluster["Registration"]
     collection = db["student_details"]
 
-    post = {"Email": name.get() + "@gmit.ie"}
+    post = {"Email": ID.get() + "@gmit.ie"}
     collection.insert_one(post)
+
+def delete_student(deleteID):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["fs.files"]    
+
+    # Delete student by ID.
+    deleteStudentID = {"filename": deleteID.get()}
+    collection.delete_one(deleteStudentID)
+    print("[INFO] Student with ID: " + deleteID.get() + " has been deleted from the database.")
+
+def delete_email(deleteID):
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["student_details"]    
+
+    # Delete student email.
+    deleteEmail = {"Email": deleteID.get() + "@gmit.ie"}
+    collection.delete_one(deleteEmail)
+
+def delete_all():
+    # Delete all registered students from the database.
+    cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = cluster["Registration"]
+    collection = db["student_details"]    
+    collection2 = db["fs.files"] 
+    collection3 = db["fs.chunks"] 
+
+    # Delete each collection.
+    collection.delete_many({})
+    collection2.delete_many({})
+    collection3.delete_many({})
+
+    # Delete students completed form and logs.
+    db2 = cluster["Students"]
+    collection4 = db2["health_check_form"] 
+    collection5 = db2["logs"] 
+
+    # Delete each collection.
+    collection4.delete_many({})
+    collection5.delete_many({})
+    print("[INFO] All data has been deleted from the database.")
 
 def all_students(n):
     cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -97,16 +138,16 @@ def student_logs(n):
     db = cluster["Students"]
     collection = db["logs"]
 
-    logs_list = [['Name', 'Time', 'Date']]
+    logs_list = [['Student ID', 'Time', 'Date']]
 
     logs_list.clear()
-    logs_list.append(["Name", "Time", "Date"])
+    logs_list.append(["Student ID", "Time", "Date"])
     cursor = collection.find({})
     for text_fromDB in cursor:
-        name = str(text_fromDB['Name'].encode('utf-8').decode("utf-8"))
+        id = str(text_fromDB['Student ID'].encode('utf-8').decode("utf-8"))
         time = str(text_fromDB['Time'].encode('utf-8').decode("utf-8"))
         date = str(text_fromDB['Date'].encode('utf-8').decode("utf-8"))
-        logs_list.append([name, time, date])
+        logs_list.append([id, time, date])
     return logs_list
 
 def student_details(n):
