@@ -35,7 +35,7 @@ def test_two():
         # click 'space' to save the image
         elif k % 256 == 32:
             # saves users name as a image 
-            img_name = "images/" + "testname" + ".jpg".format(img_counter)
+            img_name = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/Testing/images_pytest/" + "testname" + ".jpg".format(img_counter)
             assert(cv2.imwrite(img_name, frame))
             img_counter += 1
             # closes the webcam
@@ -45,10 +45,10 @@ def test_two():
 
 def test_three():
     # deletes the image of the folder
-    path = "images/" + "testname" + ".jpg"
+    path = "C:/Users/kopry/Applied-Project-and-Minor-Dissertation/Testing/images_pytest/" + "testname" + ".jpg"
     os.remove(path)
 
-    if len(os.listdir('images')) == 0:
+    if len(os.listdir('C:/Users/kopry/Applied-Project-and-Minor-Dissertation/Testing/images_pytest/')) == 0:
         messagebox.showerror("Alert","There are no students registred!\nRegister first!")
         assert(True)
     else:
@@ -57,7 +57,7 @@ def test_three():
 def test_four():
 
     def password():
-        if adminPass.get() == "1972":
+        if adminPass.get() == "2022":
             messagebox.showinfo("Alert","ACCESS GRANTED!")
             assert(True)
             window.destroy()
