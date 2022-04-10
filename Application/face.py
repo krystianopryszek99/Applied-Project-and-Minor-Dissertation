@@ -34,6 +34,12 @@ class Face_Match:
                 self.imgNames.append(os.path.splitext(self.element)[0])
             print("List of all people found:")
             print(self.imgNames)
+            # folder path
+            count = 0
+            for img in os.listdir(self.path):
+                if os.path.isfile(os.path.join(self.path, img)):
+                    count += 1
+            print('\n[INFO] Images to train:', count)
 
         # This function will get all faces that it knows 
         self.getEncodeList = train_image.getEncodings(self.images)
@@ -66,7 +72,7 @@ class Face_Match:
                 if self.matches[self.matchIndex]:
                     # show student ID of the best match
                     self.ID = self.imgNames[self.matchIndex].upper()
-                    print(self.ID)
+                    #print(self.ID)
                     y1,x2,y2,x1 = self.faceLocation
                     y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
                     cv2.rectangle(self.img,(x1,y1),(x2,y2),(255,0,0),2)
@@ -77,7 +83,7 @@ class Face_Match:
                         # Display the resulting frame
                         cv2.imshow('Image Capturing',self.img)
                         # check in 
-                        print(self.ID + " has checked In!")
+                        print(self.ID + " has checked In!\n")
                         checkIn(self.ID)
                         # Delete the image of the downloads folder after it has been retrieved from the database.
                         # After matching known face, program waits for 5 seconds and then closes.

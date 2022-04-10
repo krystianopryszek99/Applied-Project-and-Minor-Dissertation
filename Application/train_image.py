@@ -4,7 +4,7 @@ import os
 
 # function that will compute all the encodings
 def getEncodings(images):
-    print("[INFO] Training images...")
+    print("[INFO] Training images...\n")
     # list with all encodings
     encodeList = []
     # looping through all images

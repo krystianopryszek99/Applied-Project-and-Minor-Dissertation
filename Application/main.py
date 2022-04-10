@@ -430,7 +430,7 @@ Frame(healthMenuFrame).grid(row=0, column=0, padx=1000, pady=500)
 HealthCheck_Frame=Frame(healthMenuFrame,bd=4,relief=RIDGE)
 HealthCheck_Frame.place(x=350, y=200, width=800, height=520)
 
-heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2021\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
+heading_label = Label(HealthCheck_Frame,text="GMIT Daily Health Check 2022\n Please DO NOT attend if you\n have any symptoms listed below",fg="black",bg="yellow",width="500",height="3",font="10")
 heading_label.pack()
 
 mobile_label = Label(HealthCheck_Frame,text = "Mobile Number: *",fg="black",font=('Helvetica', 12, ' bold '))
