@@ -4,7 +4,7 @@
 
 # Applied Project and Minor Dissertation
 
-| Project Title | Clocking System Using Face Recognition | 
+| Project Title | Check In System Using Face Recognition | 
 | --------------- | --------------- | 
 | Course | BSc (Hons) in Software Development |
 | Module | Applied Project and Minor Dissertation| 
@@ -18,13 +18,12 @@
 - [Project Outline](#Project-Outline)
 - [Project Features](#Project-Features)
 - [How to run](#How-to-run)
-- [Demo](#Demo)
 - [Technologies used ](#Technologies-used)
 - [References](#References)
 
 ## Overview
 
-This repository contains my final project which is a Check In Management System using Face Recognition. The main idea of this project is to recognize students by their faces and check them in. In today's environment, people are forgetting their passwords/emails. The purpose of this project is so that no item is required to be carried or no password to be remembered, all it requires is the students’s face. Biometric authentication is very popular and I wanted to come up with a program that is user-friendly and authenticates users in a fast and smart way.
+This repository contains my final project which is a Check In System using Face Recognition. The main idea of this project is to recognize students by their faces and check them in. In today's environment, people are forgetting their passwords/emails. The purpose of this project is so that no item is required to be carried or no password to be remembered, all it requires is the students’s face. Biometric authentication is very popular and I wanted to come up with a program that is user-friendly and authenticates users in a fast and smart way.
 
 My goal is to have a fully working program that recognizes faces accurately and enables students to check in to college using mobile phones or kiosks. A kiosk is an idea that would be a standing station with kiosks at every door of GMIT. Due to the pandemic, students/lecturers have to fill out a health check form which not many people are aware of. The idea with kiosks would force students to fill them out on the way in.
 
@@ -33,7 +32,7 @@ The health check form is based on [GMIT Daily Health Check 2021](https://forms.o
 ## Project Outline
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57759154/149411479-d1b50316-87af-4a43-b857-93811b22b23a.png" />
+  <img src="https://user-images.githubusercontent.com/57759154/162637538-f8b2865c-6980-4bc6-8363-bc684810fb21.PNG" />
 </p>
 
 **(1) Capture Image:** Using live stream with a camera, user’s face is captured based on their face encodings, such as the length between their eyebrows. 
@@ -59,6 +58,7 @@ This outlines the main features of the project.
 - Sends email after completing the health check form.
 - Health check form details are stored in the database.
 - Capable of checking-in by face.
+- View and manage student's in admin's dashboard
 
 ## How to run 
 
@@ -72,12 +72,6 @@ $ git clone https://github.com/krystianopryszek99/Applied-Project-and-Minor-Diss
 ```
 $ python main.py
 ```
-
-## Demo
-
-This is a current version of the program running, design and functionality are to be changed or updated.   
-
-![demo3](https://user-images.githubusercontent.com/57759154/153722696-2c305be8-bb54-4804-8c8f-38c68732d057.gif)
 
 ## Technologies used 
 
