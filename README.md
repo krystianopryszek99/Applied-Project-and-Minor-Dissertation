@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57759154/140659027-396b5850-35dd-408e-8a57-51adbcfd9bdc.png" />
+  <img src="https://user-images.githubusercontent.com/57759154/162638159-53282ce7-70bf-40bf-8409-5d285f1f696d.png" width="350" height="150"/>
  </p>
 
 # Applied Project and Minor Dissertation
