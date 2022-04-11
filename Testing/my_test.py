@@ -68,7 +68,6 @@ def test_four():
 
     window = tk.Tk()
     window.geometry('600x400+50+50')
-    #adminPass = '1972'
     adminPass = tk.StringVar()
 
     lbl_name = Label(window, text="Pin",fg="black",font=('Helvetica', 20, ' bold '))

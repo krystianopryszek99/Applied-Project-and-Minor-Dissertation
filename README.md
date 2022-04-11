@@ -67,7 +67,7 @@ This outlines the main features of the project.
 ```
 $ git clone https://github.com/krystianopryszek99/Applied-Project-and-Minor-Dissertation.git
 ```
-2. Once you have cloned the repository, make sure your in the `Applied-Project-and-Minor-Dissertation` directory.
+2. Once you have cloned the repository, make sure your in the `Applied-Project-and-Minor-Dissertation/Application` directory.
 3. Follow the [requirements](requirements.md) to ensure all software is installed before running the program.
 4. To start the application, run the following command:
 ```
@@ -88,7 +88,7 @@ $ python main.py
 - email.message - Sends emails.
 
 ## Screencast
-https://youtu.be/C1SQ25CQQw0
+https://youtu.be/ZP84nHFpdl8
 
 ## References
 

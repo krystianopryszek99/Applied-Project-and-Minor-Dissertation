@@ -516,7 +516,6 @@ def on_submit():
 
             # write to csv file 
             with open('C:/Users/kopry/Applied-Project-and-Minor-Dissertation/Application/records.csv', 'a', newline = '') as f:
-                print("Saving records...")
                 # open a file for write only
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 # check if size of file is 0
@@ -550,7 +549,6 @@ def on_submit():
 
             # write to csv file 
             with open('C:/Users/kopry/Applied-Project-and-Minor-Dissertation/Application/records.csv', 'a', newline = '') as f:
-                print("Saving records...")
                 # open a file for write only
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 # check if size of file is 0

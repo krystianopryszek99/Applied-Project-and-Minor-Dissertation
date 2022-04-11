@@ -14,7 +14,6 @@ def capture(ID):
         # Capture frame-by-frame
         ret, frame = cap.read()
         if not ret:
-            print("failed")
             break
         cv2.imshow("Capture Image", frame)
 

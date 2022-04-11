@@ -7,10 +7,8 @@ import gridfs
 def mongo_conn():
     # if there is connection to db then
     try:
-        conn = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-        # print the message or
-        print("MongoDB connected", conn)
-        return conn.Registration
+        cluster = MongoClient("mongodb+srv://new-user_31:lCwmwIWHsuN4vJwQ@cluster0.sikdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        return cluster.Registration
         # if there is no connection then 
     except Exception as e:
         # print error message
@@ -42,7 +40,6 @@ def store_retrieve(ID):
     output = open(download_location, "wb")
     output.write(outputdata)
     output.close()
-    print("download completed")
 
 # Function to save student logs to the database
 def store_logs(ID, timeString, dateString):

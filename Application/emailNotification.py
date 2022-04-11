@@ -55,5 +55,5 @@ def sendNotification(name):
     subject_of_the_email = "CMS - Registration"
     # Email body is defined but no content is passed in, uses HTML to print the content of the body
     email_body = ""
-    print("Email has been sent!")
+    print("Email has been sent to: " + name.get() + "@gmit.ie\n")
     email_notification(receiver_email, subject_of_the_email, email_body)
